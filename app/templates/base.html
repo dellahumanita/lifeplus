@@ -1,0 +1,42 @@
+<html>
+    <head>
+
+        <link href= "{{ url_for('static',filename='styles/base.css') }}" rel="stylesheet" type="text/css">
+
+        {% if title %}
+        <title>{{ title }} - LifePlus</title>
+        {% else %}
+        <title>Welcome to LifePlus!</title>
+        {% endif %}
+
+    </head>
+
+    <body>
+        <header>
+
+            <nav>
+                <div class="navBlock">
+                    <div class="siteNav">
+                        <a href="/index">Home</a>
+                        <a href="#">Features</a>    
+                    </div>
+                    <div class="userNav">
+                        <a href="#">Login</a>
+                        <a href="#">Sign Up</a>    
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+
+        <hr>
+        {% block content %}
+        {% endblock %}
+
+        <footer>
+            <p>Website created by kyounira, May 2020.</p>
+        </footer>
+
+    </body>
+
+</html>
