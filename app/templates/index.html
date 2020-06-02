@@ -8,7 +8,11 @@
     </div>
 
     <div style="text-align: center;">
+        {% if current_user.is_anonymous %}
         <a href="#" class="button">Get Started!</a>
+        {% else %}
+        <h3>Welcome back, {{ current_user.username }}!</h3>
+        <a href="#" class="button">View Dashboard</a>
     </div>
 
 
