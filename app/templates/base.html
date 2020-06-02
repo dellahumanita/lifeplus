@@ -1,7 +1,11 @@
 <html>
     <head>
+        <!-- Style Sheets -->
 
         <link href= "{{ url_for('static',filename='styles/base.css') }}" rel="stylesheet" type="text/css">
+        <link href= "{{ url_for('static',filename='styles/index.css') }}" rel="stylesheet" type="text/css">
+
+
 
         {% if title %}
         <title>{{ title }} - LifePlus</title>
@@ -13,23 +17,31 @@
 
     <body>
         <header>
-
             <nav>
                 <div class="navBlock">
                     <div class="siteNav">
-                        <a href="/index">Home</a>
+                        <a href="{{ url_for('index') }}">Home</a>
                         <a href="#">Features</a>    
                     </div>
                     <div class="userNav">
-                        <a href="#">Login</a>
+                        <a href="{{ url_for('login') }}">Login</a>
                         <a href="#">Sign Up</a>    
                     </div>
                 </div>
             </nav>
-
         </header>
 
         <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
         {% block content %}
         {% endblock %}
 
