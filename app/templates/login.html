@@ -30,6 +30,6 @@ Sign In
             <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
             <p>{{ form.submit() }}</p>
         </form>
-            
+        <p>New User? <a href="{{ url_for('register') }}">Sign up here!</a></p>
     </div>
 {% endblock %}
