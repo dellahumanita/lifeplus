@@ -11,8 +11,9 @@
         {% if current_user.is_anonymous %}
         <a href="#" class="button">Get Started!</a>
         {% else %}
-        <h3>Welcome back, {{ current_user.username }}!</h3>
+        <h3 style="padding: 30px; color:#29335c;">Welcome back, {{ current_user.username }}!</h3><br><br>
         <a href="#" class="button">View Dashboard</a>
+        {% endif %}
     </div>
 
 

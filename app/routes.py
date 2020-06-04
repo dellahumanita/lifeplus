@@ -10,7 +10,6 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 @login_required # protects views against anonymous users
 def index():
-    user = {'username' : 'Della'}
     return render_template('index.html', title='Home')
 
 
@@ -23,19 +22,31 @@ def login():
     
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
+
+        # takes the password has stored with the user and determine if
+        #  password entered matches the hash 
+        #  if either username is invalid or password is incorrect, do
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password.')
             return redirect(url_for('login'))
 
+        # if both username and password and correct 
+        #   CONDITIONS  :
+        #       1. URL does not have a next argument:
+        #           - redirected to index page
+        #       2. URL includes a next argument set to a relative path:
+        #           - redirected to that URL
+        #       3. URL includes a next argument that includes a domain name::
+        #           - redirected to index page to ensure security from 
+        #               malicious sites 
+
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
-
         if not next_page or url_parse(next_page).netloc != '':
-            # url_parse determines if the URL is relative or absolute
             next_page = url_for('index')
-
+        
         return redirect(next_page)
-    
+
     return render_template('login.html', title='Sign In', form=form)
 
 @app.route('/logout')
