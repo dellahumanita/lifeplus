@@ -1,10 +1,8 @@
 <html>
     <head>
         <!-- Style Sheets -->
-
         <link href= "{{ url_for('static',filename='styles/base.css') }}" rel="stylesheet" type="text/css">
         <link href= "{{ url_for('static',filename='styles/index.css') }}" rel="stylesheet" type="text/css">
-
 
 
         {% if title %}
@@ -25,11 +23,11 @@
                     </div>
                     <div class="userNav">
                         {% if current_user.is_anonymous %}
+                        <a href="{{ url_for('register') }}">Sign Up</a>    
                         <a href="{{ url_for('login') }}">Login</a>
                         {% else %}
                         <a href="{{ url_for('logout') }}">Logout</a>
                         {% endif %}
-                        <a href="#">Sign Up</a>    
                     </div>
                 </div>
             </nav>
