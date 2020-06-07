@@ -70,3 +70,8 @@ def register():
         
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+# Temporary page to display missing features 
+@app.route('/wip')
+def wip():
+    return render_template('wip.html')

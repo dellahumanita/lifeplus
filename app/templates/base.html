@@ -19,7 +19,7 @@
                 <div class="navBlock">
                     <div class="siteNav">
                         <a href="{{ url_for('index') }}">Home</a>
-                        <a href="#">Features</a>    
+                        <a href="{{ url_for('wip') }}">Features</a>    
                     </div>
                     <div class="userNav">
                         {% if current_user.is_anonymous %}
