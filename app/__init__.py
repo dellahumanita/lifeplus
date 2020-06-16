@@ -10,8 +10,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
-login.login_view = 'login'  #forces users to login before they can
-                            # view certain pages of the application 
+login.login_view = 'login'  #forces users to login before they can view certain pages of the application 
 Bootstrap(app)
 
 from app import routes, models 
