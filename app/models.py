@@ -31,10 +31,12 @@ class System(db.Model):
 
     ## Relationships
     habits = db.relationship('Habit', backref='system', lazy=True)
-    overviews = db.relationship('Overview', backref='system', lazy=True)
 
     ## Foreign keys as columns 
     creator = db.Column(db.String(90), db.ForeignKey('user.email'), nullable=False)
+
+    def __repr__(self):
+        return '<System {}>'.format(self.sid)
 
 
 class Habit(db.Model):
@@ -49,6 +51,9 @@ class Habit(db.Model):
     ## Foreign keys as columns 
     sid = db.Column(db.Integer, db.ForeignKey('system.sid'), nullable=False)
 
+    def __repr__(self):
+        return '<Habit {}>'.format(self.hid)
+
 
 class Tracker(db.Model):
     __tablename__ = 'trackers'
@@ -57,11 +62,9 @@ class Tracker(db.Model):
     tracking_by = db.Column(db.String(90), db.ForeignKey('user.email'),
                             nullable=False)
 
-class Overview(db.Model):
-    __tablename__ = 'overviews'
-    oid = db.Column(db.Integer, primary_key=True)
-    sid = db.Column(db.Integer, db.ForeignKey('system.sid'), lazy=True)
-    #TODO: find average of all habits' progress and have them as a column for each system
+    def __repr__(self):
+        return '<Habit {}; by User {}>'.format(self.hid, self.tracking_by)
+
     
 
 @login.user_loader 
