@@ -1,13 +1,13 @@
 []  BACKEND
     +  errors
-        +   changed relationship type to INT, 
+        -   changed relationship type to INT, 
             but is it registering in the db?
             if yes, can we add the system/user 
             as instance to link the tables 
             instead of ids?
     
-    +   add habit instances for user della
-    +   add a system instance for user nira
+    -   add habit instances for user della
+    -   add a system instance for user nira
 
     +   error messages
         +   system title with same name for 

@@ -33,10 +33,10 @@ class System(db.Model):
 
     #Relationships
     users = db.relationship(User)
-    habits = db.relationship('Habit', backref='system', lazy='dynamic')
+    habits = db.relationship('Habit', backref='parent', lazy='dynamic')
 
     def __repr__(self):
-        return '<System {}>'.format(self.sid)
+        return '<System {} | User {}>'.format(self.title, self.user_id)
 
 class Habit(db.Model):
     ''' This represents a singular habit that the user creates for their system'''
@@ -47,7 +47,7 @@ class Habit(db.Model):
     system_id = db.Column(db.Integer, db.ForeignKey('system.sid'), nullable=False)
 
     def __repr__(self):
-        return '<Habit {}>'.format(self.hid)
+        return '<Habit {} | System {}>'.format(self.title, self.system_id)
 
 
 @login.user_loader 
@@ -55,27 +55,5 @@ def load_user(id):
     return User.query.get(int(id))
 
 
-def main():
-    print("\t--TESTING SPACE --\n")
-    users = User.query.all()
-    systems = System.query.all()
-    habits = Habit.query.all()
-    print("users = ", users)
-    print("systems = ", systems)
-    print("habits = ", habits)
-    print('\n')
-
-    della = User.query.get(1)
-    nira = User.query.get(2)
-
-    s4 = System(title="study routine", descr="#4", user_id=nira)
-    db.session.add(s4)
-    db.session.commit()
-    print("\t> s3 has been added successfuly!")
-
-
-
-
-main()
 
 
