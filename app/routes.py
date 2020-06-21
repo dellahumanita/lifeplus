@@ -5,14 +5,14 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User 
 from werkzeug.urls import url_parse
 
-
+'''Index'''
 @app.route('/')
 @app.route('/index')
 @login_required # protects views against anonymous users
 def index():
     return render_template('index.html', title='Home')
 
-
+'''Login'''
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -49,12 +49,15 @@ def login():
 
     return render_template('login.html', title='Sign In', form=form)
 
+
+'''Logout'''
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 
+'''Register'''
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -71,7 +74,10 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+
+'''WIP'''
 # Temporary page to display missing features 
 @app.route('/wip')
 def wip():
     return render_template('wip.html')
+

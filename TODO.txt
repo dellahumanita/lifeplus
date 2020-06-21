@@ -11,16 +11,17 @@
     -   add habit instances for user della
     -   add a system instance for user nira
 
-    +   error messages
-        +   system title with same name for 
-            the same user
-        +   same habit title for the same system
-            for the same user
 
 []  FRONTEND
     +   web form pages 
         +   create a new system 
         +   create a new habit 
+        +   error messages
+            +   system title with same name for 
+                the same user
+            +   same habit title for the same system
+                for the same user
+
     +   overview/dashboard 
         +   view existing systems
         +   view existing habits for each 
