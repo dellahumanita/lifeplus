@@ -30,6 +30,8 @@ class System(db.Model):
     title = db.Column(db.String(64), index=True, )
     descr = db.Column(db.String(120), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    status = db.Column(db.Boolean)
+    date_created = db.Column(db.DateTime)
 
     #Relationships
     users = db.relationship(User)
@@ -39,12 +41,12 @@ class System(db.Model):
         return '<System {} | User {}>'.format(self.title, self.user_id)
 
     # renames the title of the system
-    def rename(self):
-        pass
+    def rename(self, new):
+        self.title = self.new
 
     # edits the description of the system
-    def edit(self):
-        pass
+    def edit(self, text):
+        self.descr = text 
 
 class Habit(db.Model):
     ''' This represents a singular habit that the user creates for their system'''
@@ -61,13 +63,11 @@ class Habit(db.Model):
     # renames the title of the habit
     def rename(self, new):
         self.title = new
-         
 
     # checks to see if user has met their goal
     def pass_goal(self):
         if self.progress == self.goal:
             return True
-        
         return False
 
     # increase streak
