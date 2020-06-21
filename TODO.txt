@@ -1,5 +1,7 @@
+#TODO
+
 []  BACKEND
-    +  errors
+    -  errors
         -   changed relationship type to INT, 
             but is it registering in the db?
             if yes, can we add the system/user 
@@ -21,5 +23,6 @@
         +   create a new habit 
     +   overview/dashboard 
         +   view existing systems
-        +   view existing habits for each system
+        +   view existing habits for each 
+            system
 

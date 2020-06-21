@@ -27,7 +27,7 @@ class System(db.Model):
     '''This represents a system that a user has created to store their habits'''
 
     sid = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(64), index=True)
+    title = db.Column(db.String(64), index=True, )
     descr = db.Column(db.String(120), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
