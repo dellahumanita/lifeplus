@@ -38,16 +38,51 @@ class System(db.Model):
     def __repr__(self):
         return '<System {} | User {}>'.format(self.title, self.user_id)
 
+    # renames the title of the system
+    def rename(self):
+        pass
+
+    # edits the description of the system
+    def edit(self):
+        pass
+
 class Habit(db.Model):
     ''' This represents a singular habit that the user creates for their system'''
 
     hid = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True)
     progress = db.Column(db.Integer, index=True)
+    goal = db.Column(db.Integer, index=True)
     system_id = db.Column(db.Integer, db.ForeignKey('system.sid'), nullable=False)
 
     def __repr__(self):
         return '<Habit {} | System {}>'.format(self.title, self.system_id)
+
+    # renames the title of the habit
+    def rename(self, new):
+        self.title = new
+         
+
+    # checks to see if user has met their goal
+    def pass_goal(self):
+        if self.progress == self.goal:
+            return True
+        
+        return False
+
+    # increase streak
+    def increment(self):
+        self.progress = self.progress + 1 
+
+    # decrease streak
+    def decrement(self):
+        self.progress = self.progress - 1
+
+    # reset streak
+    def reset(self):
+        self.progress = 0
+
+
 
 
 @login.user_loader 
