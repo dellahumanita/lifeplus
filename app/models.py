@@ -45,6 +45,9 @@ class Habit(db.Model):
     progress = db.Column(db.Integer, index=True)
     system_id = db.Column(db.Integer, db.ForeignKey('system.sid'), nullable=False)
 
+    def __repr__(self):
+        return '<Habit {}>'.format(self.hid)
+
 
 @login.user_loader 
 def load_user(id):
