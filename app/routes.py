@@ -12,6 +12,7 @@ from werkzeug.urls import url_parse
 def index():
     return render_template('index.html', title='Home')
 
+
 '''Login'''
 @app.route('/login', methods=['GET', 'POST'])
 def login():

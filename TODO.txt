@@ -1,6 +1,6 @@
 #TODO
 
-[]  BACKEND
+[x]  BACKEND
     -  errors
         -   changed relationship type to INT, 
             but is it registering in the db?
@@ -15,7 +15,14 @@
 []  FRONTEND
     +   web form pages 
         +   create a new system 
+            +   functions
+            +   template
+            +   route
         +   create a new habit 
+            +   functions
+            +   template
+            +   route
+
         +   error messages
             +   system title with same name for 
                 the same user
