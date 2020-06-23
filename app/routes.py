@@ -92,13 +92,43 @@ def dashboard(username):
     user = User.query.filter_by(username=username).first_or_404()
     systems = System.query.filter_by(user_id=user.id).all()
     
-    
-    return render_template('dashboard.html', user=user, systems=systems)
+    return render_template('dashboard.html', title='Dashboard', user=user, systems=systems)
+
+
+'''System View'''
+@app.route('/<username>/dashboard/<system.title>')
+@login_required
+def system_view(sid):
+    '''This page allows the user to have a full-view of their selected system'''
+
+    system_id = System.query.filter_by(sid=sid).first_or_404()
+    habits = Habit.query.filter_by(system_id=system_id).first()
+
+    return 
+
+
+'''Habit View'''
+@app.route('/<username>/<system.title>/<habit.title>')
+@login_required
+def habit_view(hid):
+    '''Full-view of their selected habit with increment/decrement functionalities'''
+
+    return 
+
+
 
 
 '''System Creation Form'''
-@app.route('/systems')
+@app.route('/<username>/dashboard/new-system')
+@login_required
 def create_system():
-    pass
+    return 
+
+
+'''Habit Creation Form'''
+@app.route('/<username>/dashboard/<system.title>/new-habit')
+@login_required
+def create_habit():
+    return 
     
 
