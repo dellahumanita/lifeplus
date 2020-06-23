@@ -15,11 +15,11 @@
 []  FRONTEND
     +   web form pages 
         +   create a new system 
-            +   functions
-            +   template
+            -   functions
+            -   template
             +   route
         +   create a new habit 
-            +   functions
+            -   functions
             +   template
             +   route
 

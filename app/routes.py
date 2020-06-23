@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db 
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, SystemCreation, HabitCreation
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User 
+from app.models import User, System, Habit
 from werkzeug.urls import url_parse
 
 '''Index'''
@@ -81,4 +81,24 @@ def register():
 @app.route('/wip')
 def wip():
     return render_template('wip.html')
+
+
+'''Dashboard'''
+@app.route('/<username>/dashboard')
+@login_required
+def dashboard(username):
+    '''This page shows the user an overview of all existing systems and habits'''
+    
+    user = User.query.filter_by(username=username).first_or_404()
+    systems = System.query.filter_by(user_id=user.id).all()
+    
+    
+    return render_template('dashboard.html', user=user, systems=systems)
+
+
+'''System Creation Form'''
+@app.route('/systems')
+def create_system():
+    pass
+    
 

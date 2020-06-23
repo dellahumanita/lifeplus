@@ -19,13 +19,14 @@
                 <div class="navBlock">
                     <div class="siteNav">
                         <a href="{{ url_for('index') }}">Home</a>
-                        <a href="{{ url_for('wip') }}">Features</a>    
+                        <a href="{{ url_for('wip') }}">Features</a> 
                     </div>
                     <div class="userNav">
                         {% if current_user.is_anonymous %}
                         <a href="{{ url_for('register') }}">Sign Up</a>    
                         <a href="{{ url_for('login') }}">Login</a>
                         {% else %}
+                        <a href="{{ url_for('dashboard', username=current_user.username) }}">Dashboard</a>
                         <a href="{{ url_for('logout') }}">Logout</a>
                         {% endif %}
                     </div>

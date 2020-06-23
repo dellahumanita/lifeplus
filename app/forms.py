@@ -36,17 +36,18 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email.')
-k
+
 
 '''Create a new system'''
 class SystemCreation(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    descr = TextAreaField('Description', validators=[DataRequired()])
+    descr = TextAreaField('Some words of encouragement goes here', validators=[DataRequired()])
     confirm = SubmitField('Save')
 
     # checks to see if a system with the same title is already existing
     def validate_title(self, title):
         #TODO: filter by user-id, then by title
+        
         search = System.query.filter_by(title=title.data).first()
         if search is not None:
             raise ValidationError('Please use a different title.')

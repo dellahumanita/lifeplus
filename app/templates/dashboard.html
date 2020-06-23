@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Dashboard</h1>
+    <!-- if there are existing systems -->
+        <!-- display list of systems -->
+        <h2>Welcome back, {{ user.username }}!</h2>
+        <hr>
+        {% for system in systems %}
+        <p>
+            {{ system.title }}
+        </p>
+        {% endfor %}
+    <!-- else create a new system -->
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Create a new system</h3>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32 )}}<br>
+            {% for error in form.title.errors %}
+            <span style="color: red;">"[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.descr.label }}<br>
+            {{ form.descr(size=32) }}<br>
+        </p>
+        <p> {{ form.submit() }}</p>
+
+    </form>
+
+{% endblock %}
