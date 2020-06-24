@@ -6,11 +6,16 @@
         <!-- display list of systems -->
         <h2>Welcome back, {{ user.username }}!</h2>
         <hr>
-        {% for system in systems %}
-        <p>
-            {{ system.title }}
-        </p>
-        {% endfor %}
+        {% if systems %}
+            {% for system in systems %}
+            <p>
+                {{ system.title }}
+            </p>
+            {% endfor %}
     <!-- else create a new system -->
+        {% else %}
+            <p>Click <a href="{{ url_for('new-system', username=current_user.username) }}"">here</a> to create a new system.</p>
+        {% endif %}
+        
 
 {% endblock %}

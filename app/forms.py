@@ -3,11 +3,13 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextA
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 from app.models import User, System, Habit
 
+
+
 '''                                                
 
         Stores all the classes needed to create forms 
 
-'''                        
+'''                       
 
 
 '''Existing User Login'''
@@ -47,7 +49,6 @@ class SystemCreation(FlaskForm):
     # checks to see if a system with the same title is already existing
     def validate_title(self, title):
         #TODO: filter by user-id, then by title
-        
         search = System.query.filter_by(title=title.data).first()
         if search is not None:
             raise ValidationError('Please use a different title.')

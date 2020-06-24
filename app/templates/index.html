@@ -12,7 +12,7 @@
         <a href="{{ url_for('register') }}" class="button">Get Started!</a>
         {% else %}
         <h3 style="padding: 30px; color:#29335c;">Welcome back, {{ current_user.username }}!</h3><br><br>
-        <a href="{{ url_for('wip') }}" class="button">View Dashboard</a>
+        <a href="{{ url_for('dashboard', username=current_user.username) }}" class="button">View Dashboard</a>
         {% endif %}
     </div>
 

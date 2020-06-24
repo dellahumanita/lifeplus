@@ -5,6 +5,14 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, System, Habit
 from werkzeug.urls import url_parse
 
+
+'''Helper function to find user'''
+def __user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    
+    return user
+
+
 '''Index'''
 @app.route('/')
 @app.route('/index')
@@ -95,11 +103,33 @@ def dashboard(username):
     return render_template('dashboard.html', title='Dashboard', user=user, systems=systems)
 
 
-'''System View'''
+@app.route('/<username>/new-system')
+@login_required
+def create_system(username):
+    '''Create a new system'''
+
+    user = __user(username)
+
+    form = SystemCreation()
+    if form.validate_on_submit():
+        s = System(title=form.title.data, descr=form.descr.data,
+            user_id=user)
+        db.session.add(s)
+        db.session.commit()
+        flash('Congratulations, you have created a new system!')
+        
+        return redirect(url_for('dashboard'))
+
+
+    return render_template('create_system.html', title='New System')
+
+
+'''
+#TODO
 @app.route('/<username>/dashboard/<system.title>')
 @login_required
 def system_view(sid):
-    '''This page allows the user to have a full-view of their selected system'''
+    # This page allows the user to have a full-view of their selected system
 
     system_id = System.query.filter_by(sid=sid).first_or_404()
     habits = Habit.query.filter_by(system_id=system_id).first()
@@ -107,28 +137,20 @@ def system_view(sid):
     return 
 
 
-'''Habit View'''
 @app.route('/<username>/<system.title>/<habit.title>')
 @login_required
 def habit_view(hid):
-    '''Full-view of their selected habit with increment/decrement functionalities'''
+    #Full-view of their selected habit with increment/decrement functionalities
 
     return 
 
 
 
 
-'''System Creation Form'''
-@app.route('/<username>/dashboard/new-system')
-@login_required
-def create_system():
-    return 
-
-
-'''Habit Creation Form'''
 @app.route('/<username>/dashboard/<system.title>/new-habit')
 @login_required
 def create_habit():
     return 
-    
+'''
+
 
