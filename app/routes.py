@@ -103,7 +103,7 @@ def dashboard(username):
     return render_template('dashboard.html', title='Dashboard', user=user, systems=systems)
 
 
-@app.route('/<username>/new-system')
+@app.route('/<username>/create_system')
 @login_required
 def create_system(username):
     '''Create a new system'''
@@ -113,15 +113,15 @@ def create_system(username):
     form = SystemCreation()
     if form.validate_on_submit():
         s = System(title=form.title.data, descr=form.descr.data,
-            user_id=user)
+            user_id=current_user.username)
         db.session.add(s)
         db.session.commit()
         flash('Congratulations, you have created a new system!')
         
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard', username=current_user.username))
 
 
-    return render_template('create_system.html', title='New System')
+    return render_template('create_system.html', title='New System', user=user, form=form)
 
 
 '''

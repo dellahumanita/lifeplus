@@ -44,7 +44,7 @@ class RegistrationForm(FlaskForm):
 class SystemCreation(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     descr = TextAreaField('Some words of encouragement goes here', validators=[DataRequired()])
-    confirm = SubmitField('Save')
+    submit = SubmitField('Save')
 
     # checks to see if a system with the same title is already existing
     def validate_title(self, title):
