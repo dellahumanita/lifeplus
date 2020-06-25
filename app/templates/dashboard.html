@@ -1,24 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Dashboard</h1>
-    <!-- if there are existing systems -->
-        <!-- display list of systems -->
-        <h2>Welcome back, {{ user.username }}!</h2>
-        <hr>
-        {% if systems %}
-            {% for system in systems %}
-            <p>
-                {{ system.title }}
-            </p>
-            {% endfor %}
-    <!-- else create a new system -->
-        {% else %}
-            <p>
-            You have not created any systems yet. <br>
-            Click <a href="{{ url_for('create_system', username=current_user.username) }}">here</a> to start!
-            </p>
-        {% endif %}
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="header-other">
+                <h1>Dashboard</h1>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <!-- if there are existing systems -->
+            <!-- display list of systems -->
+            <div class="greeting">
+                <h2>Welcome back, {{ user.username }}!</h2>
+            </div>
+
+            <div class="systems">
+                {% if systems %}
+                {% for system in systems %}
+                <p>
+                    {{ system.title }}
+                </p>
+                {% endfor %}
+            <!-- else create a new system -->
+            {% else %}
+                <p>
+                You have not created any systems yet. <br>
+                Click <a href="{{ url_for('create_system', username=current_user.username) }}">here</a> to start!
+                </p>
+            {% endif %}
+
+            </div>
+            
+
+        </div>
+    </div> 
+
         
 
 {% endblock %}

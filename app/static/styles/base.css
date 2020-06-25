@@ -15,6 +15,7 @@ nav a, .navBlock {
 
 .siteNav, .userNav {
     display: inline;
+    text-decoration: none;
 }
 
 
