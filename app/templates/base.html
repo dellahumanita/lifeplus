@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Style Sheets -->
+        <!------------------------------------------------ Stylesheets ----------------------------------------------------------------------->
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        <!-- Local -->
         <link href= "{{ url_for('static',filename='styles/base.css') }}" rel="stylesheet" type="text/css">
         <link href= "{{ url_for('static',filename='styles/index.css') }}" rel="stylesheet" type="text/css">
 
@@ -24,11 +29,11 @@
                     </div>
                     <div class="userNav">
                         {% if current_user.is_anonymous %}
-                        <a href="{{ url_for('register') }}">Sign Up</a>    
-                        <a href="{{ url_for('login') }}">Login</a>
+                            <a href="{{ url_for('register') }}">Sign Up</a>    
+                            <a href="{{ url_for('login') }}">Login</a>
                         {% else %}
-                        <a href="{{ url_for('dashboard', username=current_user.username) }}">Dashboard</a>
-                        <a href="{{ url_for('logout') }}">Logout</a>
+                            <a href="{{ url_for('dashboard', username=current_user.username) }}">Dashboard</a>
+                            <a href="{{ url_for('logout') }}">Logout</a>
                         {% endif %}
                     </div>
                 </div>
