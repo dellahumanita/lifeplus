@@ -14,7 +14,10 @@
             {% endfor %}
     <!-- else create a new system -->
         {% else %}
-            <p>Click <a href="{{ url_for('create_system', username=current_user.username) }}">here</a> to create a new system.</p>
+            <p>
+            You have not created any systems yet. <br>
+            Click <a href="{{ url_for('create_system', username=current_user.username) }}">here</a> to start!
+            </p>
         {% endif %}
         
 
