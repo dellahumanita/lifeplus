@@ -1,3 +1,9 @@
-#loginTitle{
+.header {
+    color: #e4572e;
     text-align: center;
+    padding: 45% 10%;
+}
+
+.form {
+    padding: 45% 10%;
 }
