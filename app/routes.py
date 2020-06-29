@@ -97,18 +97,27 @@ def wip():
 def dashboard(username):
     '''This page shows the user an overview of all existing systems and habits'''
     
-    user = User.query.filter_by(username=username).first_or_404()
-    systems = System.query.filter_by(user_id=user.id).all()
+    systems = System.query.filter_by(user_id=current_user.id).all()
+
+    data = dict()
+    for system in systems:
+        habits = []
+        hquery = Habit.query.filter_by(system_id=system.sid).all()
+        if hquery is not None:
+            for habit in hquery:
+                habits.append(habit)
+        else:
+            raise Exception('No habits found.')
+        data[system] = habits
+        
     
-    return render_template('dashboard.html', title='Dashboard', user=user, systems=systems)
+    return render_template('dashboard.html', title='Dashboard', systems=systems, data=data)
 
 
 @app.route('/<username>/create_system', methods=['GET', 'POST'])
 @login_required
 def create_system(username):
     '''Create a new system'''
-
-    user = __user(username)
 
     form = SystemCreation()
     if form.validate_on_submit():
@@ -121,7 +130,7 @@ def create_system(username):
         return redirect(url_for('dashboard', username=current_user.username))
 
 
-    return render_template('create_system.html', title='New System', user=user, form=form)
+    return render_template('create_system.html', title='New System', form=form)
 
 
 '''

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+
+        
         <!------------------------------------------------ Stylesheets ----------------------------------------------------------------------->
 
         <!-- Bootstrap -->
@@ -27,7 +34,6 @@
                 <div class="navBlock">
                     <div class="siteNav">
                         <a href="{{ url_for('index') }}">Home</a>
-                        <a href="{{ url_for('wip') }}">Features</a> 
                     </div>
                     <div class="userNav">
                         {% if current_user.is_anonymous %}
@@ -42,7 +48,6 @@
             </nav>
         </header>
 
-        <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
