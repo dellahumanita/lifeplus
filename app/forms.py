@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm 
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, IntegerField, SelectField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, InputRequired
 from app.models import User, System, Habit
-
+from flask_login import current_user
 
 
 '''                                                
@@ -18,6 +18,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In') 
+
 
 
 '''New Users Registration'''
@@ -53,12 +54,12 @@ class SystemCreation(FlaskForm):
         if search is not None:
             raise ValidationError('Please use a different title.')
 
+    
 
 '''Create a new habit'''
 class HabitCreation(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    system_id = SelectField('Select your System', choices=[
-                (s.id, s.title) for s in System.query.filter_by(user_id=current_user.id)])
+    systemID = SelectField('Select System', coerce=int, validators=[InputRequired()])
     goal = IntegerField('Frequency Goal', validators=[DataRequired()])
     submit = SubmitField('Save')
 

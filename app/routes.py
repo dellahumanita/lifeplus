@@ -138,10 +138,15 @@ def create_system(username):
 def create_habit(username):
     '''Create a new habit for the selected system'''
 
+    available_systems = System.query.filter_by(user_id=current_user.id)
+    systems_list = [ (s.sid, s.title) for s in available_systems]
+
     form = HabitCreation()
+    form.systemID.choices = systems_list
+
     if form.validate_on_submit():
-        habit = Habit(title=form.title.data, goal=form.goal.data, system_id=current_system.id)
-        db.session.add(system)
+        habit = Habit(title=form.title.data, goal=form.goal.data, system_id=form.system.data)
+        db.session.add(habit)
         db.session.commit()
         flash('Congratulations, you have started a new habit!')
 

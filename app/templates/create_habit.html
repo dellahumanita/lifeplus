@@ -14,7 +14,9 @@
                 <form action="" method="post">
                     {{ form.hidden_tag() }}
                     <p>
-                        {{ form.system_id.label }}<br>
+                        <!-- SelectField for Systems -->
+                        {{ form.systemID.label}}<br>
+                        {{ form.systemID }}
                     </p>
                     <p>
                         {{ form.title.label }}<br>
