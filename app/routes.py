@@ -6,11 +6,8 @@ from app.models import User, System, Habit
 from werkzeug.urls import url_parse
 
 
-'''Helper function to find user'''
-def __user(username):
-    user = User.query.filter_by(username=username).first_or_404()
-    
-    return user
+'''Global Variables'''
+current_system = None
 
 
 '''Index'''
@@ -127,10 +124,30 @@ def create_system(username):
         db.session.commit()
         flash('Congratulations, you have created a new system!')
 
+        global current_system
+        current_system = system
+
         return redirect(url_for('dashboard', username=current_user.username))
 
 
     return render_template('create_system.html', title='New System', form=form)
+
+
+@app.route('/<username>/create_habit', methods=['GET', 'POST'])
+@login_required
+def create_habit(username):
+    '''Create a new habit for the selected system'''
+
+    form = HabitCreation()
+    if form.validate_on_submit():
+        habit = Habit(title=form.title.data, goal=form.goal.data, system_id=current_system.id)
+        db.session.add(system)
+        db.session.commit()
+        flash('Congratulations, you have started a new habit!')
+
+        return redirect(url_for('dashboard', username=current_user.username))
+
+    return render_template('create_habit.html', title='New Habit', form=form)
 
 
 '''
@@ -145,13 +162,6 @@ def system_view(sid):
 
     return 
 
-
-@app.route('/<username>/<system.title>/<habit.title>')
-@login_required
-def habit_view(hid):
-    #Full-view of their selected habit with increment/decrement functionalities
-
-    return 
 
 
 

@@ -29,7 +29,12 @@
                                 </ul>
                                 {% endfor %}
                             {% else %}
-                                <p>You have not added any habits.</p>
+                                <p>
+                                You have not added any habits.<br>
+                                Click <a href="{{ url_for('create_habit', username=current_user.username) }}">here</a>
+                                to add one!
+                                </p>
+
                             {% endif %}  
                     </ul>
                     {% endfor %}

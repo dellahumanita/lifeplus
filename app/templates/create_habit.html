@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="header-other">
-                <h3>System in progress...</h3>
+                <h3>{{ title }}</h3>
             </div>
         </div>
 
@@ -14,6 +14,9 @@
                 <form action="" method="post">
                     {{ form.hidden_tag() }}
                     <p>
+                        {{ form.system_id.label }}<br>
+                    </p>
+                    <p>
                         {{ form.title.label }}<br>
                         {{ form.title(size=32) }}<br>
                         {% for error in form.title.errors %}
@@ -21,12 +24,11 @@
                         {% endfor %}
                     </p>
                     <p>
-                        {{ form.descr.label }}<br>
-                        {{ form.descr(size=32) }}<br>
+                        {{ form.goal.label }}<br>
+                        {{ form.goal() }}<br>
                         {% for error in form.title.errors %}
                             <span style="color: red;">"[{{ error }}]</span>
                         {% endfor %}
-
                     </p>
                     <p>{{ form.submit() }}</p>
                 </form>        

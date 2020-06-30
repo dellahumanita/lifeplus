@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm 
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField 
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, IntegerField, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 from app.models import User, System, Habit
 
@@ -57,12 +57,17 @@ class SystemCreation(FlaskForm):
 '''Create a new habit'''
 class HabitCreation(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
+    system_id = SelectField('Select your System', choices=[
+                (s.id, s.title) for s in System.query.filter_by(user_id=current_user.id)])
+    goal = IntegerField('Frequency Goal', validators=[DataRequired()])
+    submit = SubmitField('Save')
+
 
     def validate_title(self, title):
-        #TODO: filter by user-id, then by title
         search = Habit.query.filter_by(title=title.data)
         if search is not None:
             raise ValidationError('Please use a different title.')
+    
 
 
 
