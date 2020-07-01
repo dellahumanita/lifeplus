@@ -3,26 +3,29 @@ body {
     font-family: Consolas;
 }
 
+#messages {
+    text-align: center;
+}
 
-nav a, .navBlock {
+
+#navBlock, nav a:link, nav a:visited {
     background-color: #e4572e;
     color: white;
     font-size: medium;
     text-align: center;
     text-decoration: none;
-    padding: 20px;
+    padding: 20px;   
 }
 
-.siteNav, .userNav {
-    display: inline;
-    text-decoration: none;
+nav a:hover {
+    background-color: rgb(197, 82, 47);
 }
 
 
 footer {
-    position: absolute;
+    position: fixed;
+    bottom:0;
     text-align: left;
     font-size: 10pt;
-    bottom: 5px;
-    margin-left: 5px;
+    left:1%;
 }

@@ -31,11 +31,8 @@
     <body>
         <header>
             <nav>
-                <div class="navBlock">
-                    <div class="siteNav">
-                        <a href="{{ url_for('index') }}">Home</a>
-                    </div>
-                    <div class="userNav">
+                <div id="navBlock">
+                     <a href="{{ url_for('index') }}">Home</a>
                         {% if current_user.is_anonymous %}
                             <a href="{{ url_for('register') }}">Sign Up</a>    
                             <a href="{{ url_for('login') }}">Login</a>
@@ -43,26 +40,28 @@
                             <a href="{{ url_for('dashboard', username=current_user.username) }}">Dashboard</a>
                             <a href="{{ url_for('logout') }}">Logout</a>
                         {% endif %}
-                    </div>
                 </div>
             </nav>
         </header>
 
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        {% endwith %}
+        <div id="messages">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-primary" role="alert">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+                    </div>
+                {% endwith %}    
+    
+        </div>
 
         {% block content %}
         {% endblock %}
 
         <footer>
-            <p>Website created by kyounira, May 2020.</p>
+            <p><span>&#169;</span> Della Humanita, 2020.</p>
         </footer>
 
     </body>

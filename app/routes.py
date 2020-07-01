@@ -133,6 +133,7 @@ def create_system(username):
     return render_template('create_system.html', title='New System', form=form)
 
 
+
 @app.route('/<username>/create_habit', methods=['GET', 'POST'])
 @login_required
 def create_habit(username):
@@ -167,14 +168,6 @@ def system_view(sid):
 
     return 
 
-
-
-
-
-@app.route('/<username>/dashboard/<system.title>/new-habit')
-@login_required
-def create_habit():
-    return 
 '''
 
 

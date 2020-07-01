@@ -19,7 +19,11 @@
             Welcome back, {{ current_user.username }}!
         </h3>
         <br><br>
-        <a href="{{ url_for('dashboard', username=current_user.username) }}" class="button">View Dashboard</a>
+        <div id="button" style="text-decoration: none;">
+            <a href="{{ url_for('dashboard', username=current_user.username) }}">
+                View Dashboard
+            </a>    
+        </div>
         {% endif %}
     </div>
 
