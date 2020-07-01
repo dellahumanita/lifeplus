@@ -60,13 +60,14 @@
             </div>
 
             <div class="row">
-                <div class="new-system">
-                    Add System
-                </div>
-                <div class="new-habit">
-                    Add Habit
-                </div>
-                
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="new-buttons">
+                            <a href="{{ url_for('create_system', username=current_user.username) }}">Add System</a>
+                            <a href="{{ url_for('create_habit', username=current_user.username) }}">Add Habit</a> 
+                        </div>
+                    </div>
             </div>
 
         </div>
