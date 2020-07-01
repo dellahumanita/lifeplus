@@ -5,60 +5,79 @@
     <!-- Headers -->
 
     <div class="row">
+
         <div class="col-sm-4">
             <div id="header">Dashboard</div>
-            <div id="nav-dashboard">
-                <nav>
-                    <ul>
-                        <li><a href="{{ url_for('dashboard', username=current_user.username) }}">Overview</a></li>
-                        <li><a href="{{ url_for('wip') }}">Settings</a></li>
-                    </ul>
-                </nav>
+                <div id="nav-dashboard">
+                    <nav>
+                        <ul>
+                            <li><a href="{{ url_for('dashboard', username=current_user.username) }}">Overview</a></li>
+                            <li><a href="{{ url_for('wip') }}">Settings</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>
 
         <div class="col-sm-8">
             <div id="greeting">
                 Welcome back, {{ current_user.username }}!
             </div>
-        </div>
 
-    </div>
-    
-    <!-- Main Content: Systems Overview -->
+            <div class="overview">
 
-            <!-- <div class="systems">
                 {% if systems %}
+                <div class="row">
+
                     {% for key in data %}
-                    <ul>
-                        <li>
+                    <div class="system-mini">
+                        <div class="col-sm-6">
                             {{ key.title }} :
-                        </li>
                             {% if data[key]|length > 0 %}
                                 {% for habit in data[key] %}
                                 <ul>
                                     <li>{{ habit.title }}</li>
                                 </ul>
                                 {% endfor %}
-                            {% else %}
+                        </div>
+                    </div>
+                            {% else %}        
+                        <div class="col-sm-6">
+                            <div class="system-mini">
                                 <p>
-                                You have not added any habits.<br>
-                                Click <a href="{{ url_for('create_habit', username=current_user.username) }}">here</a>
-                                to add one!
-                                </p>
-
-                            {% endif %}  
-                    </ul>
+                                    You have not added any habits.<br>
+                                    Click <a href="{{ url_for('create_habit', username=current_user.username) }}">here</a>
+                                    to add one!
+                                    </p>        
+                            </div>
+                        </div>
+                        {% endif %}      
                     {% endfor %}
+                </div> 
+                    
+                {% else %}
+                    <p>
+                    You have not created any systems yet. <br>
+                    Click <a href="{{ url_for('create_system', username=current_user.username) }}">here</a> to start!
+                    </p>
+                {% endif %}
                 
-            {% else %}
-                <p>
-                You have not created any systems yet. <br>
-                Click <a href="{{ url_for('create_system', username=current_user.username) }}">here</a> to start!
-                </p>
-            {% endif %}
 
-            </div> -->
+            </div>
+
+        </div>
+
+    </div>
+    
+
+
+        
+    <!-- Main Content: Systems Overview -->
+        <!-- <div class="col-sm-8">
+
+        </div> -->
+
+
+
             
 
         
