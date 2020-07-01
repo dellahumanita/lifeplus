@@ -43,8 +43,20 @@
     background-color:#F1F1F1;
     width: 374px;
     height: 447px;
+    border-top: solid #F3A712;
+    border-width: 60px;
     margin: 30px;
     padding: 20px;
+}
+
+.system-mini > h2 {
+    margin-top: -70px;
+    color: white;
+    text-align: center;
+}
+
+.system-mini > .habits {
+    margin: 20px;
 }
 
 
