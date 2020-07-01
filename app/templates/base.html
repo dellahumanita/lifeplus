@@ -17,6 +17,7 @@
         <link href= "{{ url_for('static',filename='styles/base.css') }}" rel="stylesheet" type="text/css">
         <link href= "{{ url_for('static',filename='styles/index.css') }}" rel="stylesheet" type="text/css">
         <link href= "{{ url_for('static',filename='styles/login.css') }}" rel="stylesheet" type="text/css">
+        <link href= "{{ url_for('static',filename='styles/dashboard.css') }}" rel="stylesheet" type="text/css">
         <link href= "{{ url_for('static',filename='styles/systems.css') }}" rel="stylesheet" type="text/css">
 
 
@@ -30,18 +31,18 @@
 
     <body>
         <header>
-            <nav>
-                <div id="navBlock">
-                     <a href="{{ url_for('index') }}">Home</a>
-                        {% if current_user.is_anonymous %}
-                            <a href="{{ url_for('register') }}">Sign Up</a>    
-                            <a href="{{ url_for('login') }}">Login</a>
-                        {% else %}
-                            <a href="{{ url_for('dashboard', username=current_user.username) }}">Dashboard</a>
-                            <a href="{{ url_for('logout') }}">Logout</a>
-                        {% endif %}
-                </div>
-            </nav>
+            <div id="navBlock">
+                <nav>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    {% if current_user.is_anonymous %}
+                        <a href="{{ url_for('register') }}">Sign Up</a>    
+                        <a href="{{ url_for('login') }}">Login</a>
+                    {% else %}
+                        <a href="{{ url_for('dashboard', username=current_user.username) }}">Dashboard</a>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    {% endif %}
+                </nav>
+            </div>
         </header>
 
         <div id="messages">

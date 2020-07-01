@@ -28,23 +28,9 @@ def login():
     
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-
-        # takes the password has stored with the user and determine if
-        #  password entered matches the hash 
-        #  if either username is invalid or password is incorrect, do
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password.')
             return redirect(url_for('login'))
-
-        # if both username and password and correct 
-        #   CONDITIONS  :
-        #       1. URL does not have a next argument:
-        #           - redirected to index page
-        #       2. URL includes a next argument set to a relative path:
-        #           - redirected to that URL
-        #       3. URL includes a next argument that includes a domain name::
-        #           - redirected to index page to ensure security from 
-        #               malicious sites 
 
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
@@ -111,10 +97,10 @@ def dashboard(username):
     return render_template('dashboard.html', title='Dashboard', systems=systems, data=data)
 
 
+'''New System Form'''
 @app.route('/<username>/create_system', methods=['GET', 'POST'])
 @login_required
 def create_system(username):
-    '''Create a new system'''
 
     form = SystemCreation()
     if form.validate_on_submit():
@@ -129,15 +115,13 @@ def create_system(username):
 
         return redirect(url_for('dashboard', username=current_user.username))
 
-
     return render_template('create_system.html', title='New System', form=form)
 
 
-
+'''New Habit Form'''
 @app.route('/<username>/create_habit', methods=['GET', 'POST'])
 @login_required
 def create_habit(username):
-    '''Create a new habit for the selected system'''
 
     available_systems = System.query.filter_by(user_id=current_user.id)
     systems_list = [ (s.sid, s.title) for s in available_systems]
@@ -155,19 +139,21 @@ def create_habit(username):
 
     return render_template('create_habit.html', title='New Habit', form=form)
 
-
-'''
 #TODO
-@app.route('/<username>/dashboard/<system.title>')
-@login_required
-def system_view(sid):
-    # This page allows the user to have a full-view of their selected system
-
-    system_id = System.query.filter_by(sid=sid).first_or_404()
-    habits = Habit.query.filter_by(system_id=system_id).first()
-
-    return 
-
 '''
 
+@app.route('/<username>/edit_system', methods=['GET', 'POST'])
+@login_required
+def edit_system(username):
+    # Edits an existing system
+
+    return
+
+@app.route('/<username>/view_system/<system_sid>')
+@login_required
+def view_system(username, system_sid):
+    # Full-view of existing system
+
+    return
+'''
 

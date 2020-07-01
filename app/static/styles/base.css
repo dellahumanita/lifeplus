@@ -7,17 +7,25 @@ body {
     text-align: center;
 }
 
-
-#navBlock, nav a:link, nav a:visited {
+#navBlock > nav {
     background-color: #e4572e;
-    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+#navBlock > nav a{
+    color:white;
     font-size: medium;
     text-align: center;
     text-decoration: none;
-    padding: 20px;   
+    padding: 20px;
 }
 
-nav a:hover {
+#navBlock > nav a:link #navBlock > nav a:visited{
+    text-decoration: none;
+}
+
+#navBlock > nav a:hover {
     background-color: rgb(197, 82, 47);
 }
 
