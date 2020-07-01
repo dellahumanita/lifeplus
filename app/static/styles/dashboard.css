@@ -13,7 +13,7 @@
 
 #nav-dashboard {
     text-align: left;
-    padding-left: 0px;
+    padding-left: 50px;
 }
 
 #nav-dashboard > nav > ul > li{
@@ -36,7 +36,6 @@
 } 
 
 .overview {
-    padding: 20px;
     margin: 10px;
 }
 
@@ -44,12 +43,12 @@
     background-color:#F1F1F1;
     width: 374px;
     height: 447px;
-    text-align: center;
     margin: 30px;
+    padding: 20px;
 }
 
 
-.systems, .form-system {
+.form-system {
     padding-top: 15%;
 }
 
