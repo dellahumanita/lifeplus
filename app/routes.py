@@ -145,7 +145,7 @@ def create_habit(username):
     form.systemID.choices = systems_list
 
     if form.validate_on_submit():
-        habit = Habit(title=form.title.data, goal=form.goal.data, system_id=form.system.data)
+        habit = Habit(title=form.title.data, goal=form.goal.data, system_id=form.systemID.data)
         db.session.add(habit)
         db.session.commit()
         flash('Congratulations, you have started a new habit!')

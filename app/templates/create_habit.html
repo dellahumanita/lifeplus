@@ -29,7 +29,7 @@
                         {{ form.goal.label }}<br>
                         {{ form.goal() }}<br>
                         {% for error in form.title.errors %}
-                            <span style="color: red;">"[{{ error }}]</span>
+                            <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
                     </p>
                     <p>{{ form.submit() }}</p>

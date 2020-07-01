@@ -47,12 +47,6 @@ class SystemCreation(FlaskForm):
     descr = TextAreaField('Some words of encouragement goes here', validators=[DataRequired()])
     submit = SubmitField('Save')
 
-    # checks to see if a system with the same title is already existing
-    def validate_title(self, title):
-        #TODO: filter by user-id, then by title
-        search = System.query.filter_by(title=title.data).first()
-        if search is not None:
-            raise ValidationError('Please use a different title.')
 
     
 
@@ -62,13 +56,6 @@ class HabitCreation(FlaskForm):
     systemID = SelectField('Select System', coerce=int, validators=[InputRequired()])
     goal = IntegerField('Frequency Goal', validators=[DataRequired()])
     submit = SubmitField('Save')
-
-
-    def validate_title(self, title):
-        search = Habit.query.filter_by(title=title.data)
-        if search is not None:
-            raise ValidationError('Please use a different title.')
-    
 
 
 
