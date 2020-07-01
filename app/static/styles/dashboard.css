@@ -59,6 +59,11 @@
     margin: 20px;
 }
 
+.new-system {
+    background-color: #F3A712;
+    color: white;
+    padding: 15px;
+}
 
 .form-system {
     padding-top: 15%;

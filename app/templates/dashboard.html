@@ -27,7 +27,6 @@
 
                 {% if systems %}
                 <div class="row">
-
                     {% for key in data %}
                     <div class="col-sm-5">
                         <div class="system-mini">
@@ -49,33 +48,30 @@
                             </div>
                         </div>
                     </div>
-
                     {% endfor %}
-                    
                 </div> 
-                    
                 {% else %}
                     <p>
                     You have not created any systems yet. <br>
                     Click <a href="{{ url_for('create_system', username=current_user.username) }}">here</a> to start!
                     </p>
                 {% endif %}
-                
+            
+            </div>
 
+            <div class="row">
+                <div class="new-system">
+                    Add System
+                </div>
+                <div class="new-habit">
+                    Add Habit
+                </div>
+                
             </div>
 
         </div>
 
     </div>
-    
-
-
-        
-    <!-- Main Content: Systems Overview -->
-        <!-- <div class="col-sm-8">
-
-        </div> -->
-
 
 
             
