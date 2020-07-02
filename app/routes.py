@@ -6,9 +6,6 @@ from app.models import User, System, Habit
 from werkzeug.urls import url_parse
 
 
-'''Global Variables'''
-current_system = None
-
 
 '''Index'''
 @app.route('/')
@@ -110,9 +107,6 @@ def create_system(username):
         db.session.commit()
         flash('Congratulations, you have created a new system!')
 
-        global current_system
-        current_system = system
-
         return redirect(url_for('dashboard', username=current_user.username))
 
     return render_template('create_system.html', title='New System', form=form)
@@ -139,7 +133,16 @@ def create_habit(username):
 
     return render_template('create_habit.html', title='New Habit', form=form)
 
-#TODO
+
+@app.route('/<username>/view_system', methods=['GET', 'POST'])
+@login_required
+def view_system(username):
+    # Full-view of existing system
+
+    # get systemid from overview
+    # query systemid
+
+    return render_template('view_system.html', title='View')
 '''
 
 @app.route('/<username>/edit_system', methods=['GET', 'POST'])
@@ -149,11 +152,6 @@ def edit_system(username):
 
     return
 
-@app.route('/<username>/view_system/<system_sid>')
-@login_required
-def view_system(username, system_sid):
-    # Full-view of existing system
 
-    return
 '''
 

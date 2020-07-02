@@ -30,7 +30,10 @@
                     {% for key in data %}
                     <div class="col-sm-5">
                         <div class="system-mini">
-                            <h2>{{ key.title }}</h2>
+                            <h2>
+                                <!-- Click System Title for Full View -->
+                                <a href="{{ url_for('view_system', username=current_user.username) }}">{{ key.title }}</a>
+                            </h2>
                             <div class="habits">
                                 {% if data[key]|length > 0 %}
                                 {% for habit in data[key] %}
