@@ -9,6 +9,7 @@ Sign In
 
 <!-- Form -->
 {% block content %}
+
 <div id="login-form">
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
@@ -31,7 +32,5 @@ Sign In
     </form>
     <p>New User? <a href="{{ url_for('register') }}">Sign up here!</a></p>
 </div>
-
-<div class="col-sm-4"></div>
 
 {% endblock %}

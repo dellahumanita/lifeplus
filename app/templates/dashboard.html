@@ -29,18 +29,28 @@ Dashboard
     <div class="row">
         {% for key in data %}
         <div class="col-sm-5">
+
             <div class="system-mini">
                 <h2>
-                    <!-- Click System Title for Full View -->
-                    <a href="{{ url_for('view_system', username=current_user.username) }}">{{ key.title }}</a>
+                    <!-- TODO: Click System Title for Full View -->
+                    {{ key.title }}
                 </h2>
                 <div class="habits">
                     {% if data[key]|length > 0 %}
+
+                    <!-- display overall progress bar -->
+
                     {% for habit in data[key] %}
                     <ul>
-                        <li>{{ habit.title }}</li>
+                        <!-- display habit progress bar -->
+                        <li>{{ habit.title }}
+                            <button class="increment">+</button>
+                            <button class="decrement">-</button>
+                            <button class="update">Update</button>
+                        </li>
                     </ul>
                     {% endfor %}
+
                 {% else %}        
                 <p style="text-align:justify;">
                     You have not added any habits.<br>
@@ -49,6 +59,7 @@ Dashboard
                 </p>
                 {% endif %}
                 </div>
+
             </div>
         </div>
         {% endfor %}

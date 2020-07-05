@@ -54,7 +54,7 @@ class Habit(db.Model):
 
     hid = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True)
-    progress = db.Column(db.Integer, index=True)
+    progress = db.Column(db.Integer, default=0, index=True)
     goal = db.Column(db.Integer, index=True)
     system_id = db.Column(db.Integer, db.ForeignKey('system.sid'), nullable=False)
 
