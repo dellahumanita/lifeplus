@@ -19,6 +19,7 @@
         <link href= "{{ url_for('static',filename='styles/login.css') }}" rel="stylesheet" type="text/css">
         <link href= "{{ url_for('static',filename='styles/dashboard.css') }}" rel="stylesheet" type="text/css">
         <link href= "{{ url_for('static',filename='styles/systems.css') }}" rel="stylesheet" type="text/css">
+        <link href= "{{ url_for('static',filename='styles/forms.css') }}" rel="stylesheet" type="text/css">
 
 
         {% if title %}
@@ -31,7 +32,7 @@
 
     <body>
         <header>
-            <div id="navBlock">
+            <div id="navHorizontal">
                 <nav>
                     <a href="{{ url_for('index') }}">Home</a>
                     {% if current_user.is_anonymous %}
@@ -54,13 +55,24 @@
                     {% endfor %}
                 {% endif %}
                     </div>
-                {% endwith %}    
-    
+                {% endwith %}   
         </div>
 
         <div class="container-fluid">
-            {% block content %}
-            {% endblock %}    
+            <div class="row">
+                <div class="col-sm-4">
+                    <div id="header">
+                        {% block header %}{% endblock %}
+                    </div>
+                    <div id="navVertical">
+                        {% block navVertical %}{% endblock %}
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    {% block content %}
+                    {% endblock %}        
+                </div>
+            </div>
         </div>
 
         <footer>

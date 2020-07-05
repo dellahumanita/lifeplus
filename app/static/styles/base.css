@@ -7,13 +7,13 @@ body {
     text-align: center;
 }
 
-#navBlock > nav {
+header > #navHorizontal > nav {
     background-color: #e4572e;
     text-align: center;
     padding: 20px;
 }
 
-#navBlock > nav a{
+header > #navHorizontal > nav a{
     color:white;
     font-size: medium;
     text-align: center;
@@ -21,11 +21,11 @@ body {
     padding: 20px;
 }
 
-#navBlock > nav a:link #navBlock > nav a:visited{
+header > #navHorizontal > nav a:link header > #navHorizontal > nav a:visited{
     text-decoration: none;
 }
 
-#navBlock > nav a:hover {
+header > #navHorizontal > nav a:hover {
     background-color: rgb(197, 82, 47);
 }
 

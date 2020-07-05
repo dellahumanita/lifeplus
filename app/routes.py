@@ -6,11 +6,9 @@ from app.models import User, System, Habit
 from werkzeug.urls import url_parse
 
 
-
 '''Index'''
-@app.route('/')
 @app.route('/index')
-@login_required # protects views against anonymous users
+@login_required
 def index():
     return render_template('index.html', title='Home')
 

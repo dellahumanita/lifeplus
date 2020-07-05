@@ -11,24 +11,24 @@
     padding-top: 5%;
 }
 
-#nav-dashboard {
+#navVertical {
     text-align: left;
     padding-left: 50px;
 }
 
-#nav-dashboard > nav > ul > li{
+#navVertical > nav > ul > li{
     font-size: 24px;
     list-style-type: none;
     padding: 60px 10px;
 }
 
-#nav-dashboard > nav > ul > li a{
+#navVertical > nav > ul > li a{
     color:#29335C;
     text-decoration: none;
     padding: 10px;
 }
 
-#nav-dashboard > nav > ul > li a:hover {
+#navVertical > nav > ul > li a:hover {
     background-color: #f7f7f7;
     border-left: #e4572e;
     border-style: solid;
@@ -72,8 +72,5 @@
 }
 
 
-.form-system {
-    padding-top: 15%;
-}
 
 

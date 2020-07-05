@@ -1,42 +1,35 @@
 {% extends "base.html" %}
 
+{% block header %}
+{{ title }}
+{% endblock %}
+
 {% block content %}
-
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="header-other">
-                <h3>{{ title }}</h3>
-            </div>
-        </div>
-
-        <div class="col-sm-8">
-            <div class="form-system">
-                <form action="" method="post">
-                    {{ form.hidden_tag() }}
-                    <p>
-                        <!-- SelectField for Systems -->
-                        {{ form.systemID.label}}<br>
-                        {{ form.systemID }}
-                    </p>
-                    <p>
-                        {{ form.title.label }}<br>
-                        {{ form.title(size=32) }}<br>
-                        {% for error in form.title.errors %}
-                        <span style="color: red;">"[{{ error }}]</span>
-                        {% endfor %}
-                    </p>
-                    <p>
-                        {{ form.goal.label }}<br>
-                        {{ form.goal() }}<br>
-                        {% for error in form.title.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                    </p>
-                    <p>{{ form.submit() }}</p>
-                </form>        
-            </div>
-        </div>
-    </div> 
+<div id="main-form">
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            <!-- SelectField for Systems -->
+            {{ form.systemID.label }}<br>
+            {{ form.systemID }}
+        </p>
+        <p>
+            {{ form.title.label }}<br>
+            {{ form.title(size=32) }}<br>
+            {% for error in form.title.errors %}
+            <span style="color: red;">"[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.goal.label }}<br>
+            {{ form.goal() }}<br>
+            {% for error in form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>        
+</div>
 
 
 {% endblock %}

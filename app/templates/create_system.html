@@ -1,38 +1,33 @@
 {% extends "base.html" %}
 
+
+ {% block header %}New System{% endblock %}
+    
+            
 {% block content %}
+<div id="main-form">
+    <div class="form-group">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.title.label }}<br>
+                {{ form.title(size=32) }}<br>
+                {% for error in form.title.errors %}
+                <span style="color: red;">"[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.descr.label }}<br>
+                {{ form.descr(size=32) }}<br>
+                {% for error in form.title.errors %}
+                    <span style="color: red;">"[{{ error }}]</span>
+                {% endfor %}
 
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="header-other">
-                <h3>System in progress...</h3>
-            </div>
-        </div>
-
-        <div class="col-sm-8">
-            <div class="form-system">
-                <form action="" method="post">
-                    {{ form.hidden_tag() }}
-                    <p>
-                        {{ form.title.label }}<br>
-                        {{ form.title(size=32) }}<br>
-                        {% for error in form.title.errors %}
-                        <span style="color: red;">"[{{ error }}]</span>
-                        {% endfor %}
-                    </p>
-                    <p>
-                        {{ form.descr.label }}<br>
-                        {{ form.descr(size=32) }}<br>
-                        {% for error in form.title.errors %}
-                            <span style="color: red;">"[{{ error }}]</span>
-                        {% endfor %}
-
-                    </p>
-                    <p>{{ form.submit() }}</p>
-                </form>        
-            </div>
-        </div>
-    </div> 
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>        
+    </div>
+</div>
 
 
 {% endblock %}
