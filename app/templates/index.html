@@ -2,30 +2,23 @@
 
 {% block content %}
 
-    <div class="welcomePage">
-        <div id="welcomeTitle">
-            L I F E +
-        </div>
-        <div class="motto">
-            upgrade your life.
-        </div>    
+    <div id="welcomePage">
+        <div class="welcomeTitle">L I F E +</div>
+        <div class="motto">upgrade your life.</div>    
     </div>
 
-    <div style="text-align: center;">
-        {% if current_user.is_anonymous %}
-            <a href="{{ url_for('register') }}" class="button">Get Started!</a>
-        {% else %}
-        <h3 style="padding: 30px; color:#29335c;">
+    {% if current_user.is_anonymous %}
+        <a href="{{ url_for('register') }}" class="button">Get Started!</a>
+    {% else %}
+        <h3 style="padding: 30px; color:#29335c; 
+                    text-align: right;">
             Welcome back, {{ current_user.username }}!
         </h3>
         <br><br>
-        <div id="button" style="text-decoration: none;">
-            <a href="{{ url_for('dashboard', username=current_user.username) }}">
-                View Dashboard
-            </a>    
-        </div>
-        {% endif %}
-    </div>
+        <a href="{{ url_for('dashboard', username=current_user.username) }}" class="button">
+            View Dashboard
+        </a> 
+    {% endif %}
 
 
 

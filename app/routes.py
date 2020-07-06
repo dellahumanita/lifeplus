@@ -7,10 +7,12 @@ from werkzeug.urls import url_parse
 
 
 '''Index'''
+@app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', title='Home')
+    rule = request.url_rule
+    return render_template('index.html', title='Home', rule=rule)
 
 
 '''Login'''
