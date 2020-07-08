@@ -7,10 +7,12 @@ from werkzeug.urls import url_parse
 
 
 '''Index'''
+@app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', title='Home')
+    rule = request.url_rule
+    return render_template('index.html', title='Home', rule=rule)
 
 
 '''Login'''
@@ -132,15 +134,24 @@ def create_habit(username):
     return render_template('create_habit.html', title='New Habit', form=form)
 
 
-@app.route('/<username>/view_system', methods=['GET', 'POST'])
-@login_required
-def view_system(username):
-    # Full-view of existing system
+# @app.route('/<username>/view_system', methods=['GET', 'POST'])
+# @login_required
+# def view_system(username):
+#     # Full-view of existing system
 
-    # get systemid from overview
-    # query systemid
+#     # get systemid from overview
+#     # query systemid
 
-    return render_template('view_system.html', title='View')
+#     return render_template('view_system.html', title='View')
+
+
+
+# @app.route('/<username>/update_habit', methods=['GET', 'POST'])
+# def update_habit(username):
+
+#     return 
+
+
 '''
 
 @app.route('/<username>/edit_system', methods=['GET', 'POST'])
