@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-
 <!-- Header -->
 {% block header %}
 Dashboard
@@ -30,23 +29,74 @@ Dashboard
         {% for key in data %}
         <div class="col-sm-5">
             <div class="system-mini">
-                <h2>
-                    <!-- Click System Title for Full View -->
-                    <a href="{{ url_for('view_system', username=current_user.username) }}">{{ key.title }}</a>
-                </h2>
+               <h2>{{ key.title }}</h2>
                 <div class="habits">
                     {% if data[key]|length > 0 %}
                     {% for habit in data[key] %}
                     <ul>
-                        <li>{{ habit.title }}</li>
+                        <!-- updateable progress bars -->
+                        <li>
+
+                            {{ habit.title }}<br>
+                            <!-- TODO: progress bars for each individual habit -->
+                            <div class="progress">
+                                <div id="bar">10%</div>
+                            </div>
+                            <button onclick="decrement()">-</button>
+                            <script> 
+                                var i = 100;
+                                function decrement() {
+                                    if (i == 0) {
+                                        i = 1;
+                                        var elem = document.getElementById("bar");
+                                        var width = 10;
+                                        var id = setInterval(frame, 10);
+                                        function frame() {
+                                            if (width >= 0) {
+                                                clearInterval(id);
+                                                i = 0;
+                                            } else {
+                                                width--;
+                                                elem.style.width = width + "%";
+                                                elem.innerHTML = width + "%";
+                                            }
+                                        }
+                                    }
+                                } 
+                            </script>
+
+                            <button onclick="increment()">+</button>
+                            <script>
+                                var i = 0;
+                                function increment() {
+                                    if (i == 0) {
+                                        i = 1;
+                                        var elem = document.getElementById("bar");
+                                        var width = 10;
+                                        var id = setInterval(frame, 10);
+                                        function frame() {
+                                            if (width >= 100) {
+                                                clearInterval(id);
+                                                i = 0;
+                                            } else {
+                                                width++;
+                                                elem.style.width = width + "%";
+                                                elem.innerHTML = width + "%";
+                                            }
+                                        }
+                                    }
+                                } 
+                            </script>
+                            <br>
+                        </li>
                     </ul>
                     {% endfor %}
                 {% else %}        
-                <p style="text-align:justify;">
-                    You have not added any habits.<br>
-                    Click <a href="{{ url_for('create_habit', username=current_user.username) }}">here</a>
-                    to add one!          
-                </p>
+                    <p style="text-align:justify;">
+                        You have not added any habits.<br>
+                        Click <a href="{{ url_for('create_habit', username=current_user.username) }}">here</a>
+                        to add one!          
+                    </p>
                 {% endif %}
                 </div>
             </div>

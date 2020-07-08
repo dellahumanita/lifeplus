@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+        
 
 class System(db.Model):
     '''This represents a system that a user has created to store their habits'''
@@ -48,6 +49,7 @@ class System(db.Model):
     # edits the description of the system
     def edit(self, text):
         self.descr = text 
+        
 
 class Habit(db.Model):
     ''' This represents a singular habit that the user creates for their system'''
