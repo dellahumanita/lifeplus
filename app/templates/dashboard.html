@@ -33,23 +33,22 @@ Dashboard
                <h2>{{ key.title }}</h2>
                 <div class="habits">
                     {% if data[key]|length > 0 %}
-
-                    <!-- display overall progress bar -->
+                    <!-- TODO display overall progress bar here-->
 
                     {% for habit in data[key] %}
                     <ul>
                         <!-- updateable progress bars -->
                         <li>
-
                             {{ habit.title }}<br>
                             <!-- TODO: progress bars for each individual habit -->
                             <div class="progress">
                                 <div id="bar">10%</div>
                             </div>
-                            <button onclick="decrement()">-</button>
+
+                            <button type="button" onclick="decrement(this)">-</button>
                             <script> 
                                 var i = 100;
-                                function decrement() {
+                                function decrement(bar) {
                                     if (i == 0) {
                                         i = 1;
                                         var elem = document.getElementById("bar");
@@ -69,10 +68,9 @@ Dashboard
                                 } 
                             </script>
 
-                            <button onclick="increment()">+</button>
+                            <button type="button" onclick="increment(this)">+</button>
                             <script>
-                                var i = 0;
-                                function increment() {
+                                function increment(bar) {
                                     if (i == 0) {
                                         i = 1;
                                         var elem = document.getElementById("bar");
@@ -91,6 +89,7 @@ Dashboard
                                     }
                                 } 
                             </script>
+            
                             <br>
                         </li>
                     </ul>
