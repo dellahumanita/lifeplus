@@ -39,58 +39,18 @@ Dashboard
                     <ul>
                         <!-- updateable progress bars -->
                         <li>
+
                             {{ habit.title }}<br>
                             <!-- TODO: progress bars for each individual habit -->
-                            <div class="progress">
-                                <div id="bar">10%</div>
+                            <div class="progressBar">
+                                <div class="progressValue">0%</div>
+                                <div class="progressFill"></div>
                             </div>
-
-                            <button type="button" onclick="decrement(this)">-</button>
-                            <script> 
-                                var i = 100;
-                                function decrement(bar) {
-                                    if (i == 0) {
-                                        i = 1;
-                                        var elem = document.getElementById("bar");
-                                        var width = 10;
-                                        var id = setInterval(frame, 10);
-                                        function frame() {
-                                            if (width >= 0) {
-                                                clearInterval(id);
-                                                i = 0;
-                                            } else {
-                                                width--;
-                                                elem.style.width = width + "%";
-                                                elem.innerHTML = width + "%";
-                                            }
-                                        }
-                                    }
-                                } 
+                            <button onclick="increment()">+</button>
+                            <script type="text/javascript" 
+                                src="../static/scripts/progress_bar_tutorial.js">
                             </script>
 
-                            <button type="button" onclick="increment(this)">+</button>
-                            <script>
-                                function increment(bar) {
-                                    if (i == 0) {
-                                        i = 1;
-                                        var elem = document.getElementById("bar");
-                                        var width = 10;
-                                        var id = setInterval(frame, 10);
-                                        function frame() {
-                                            if (width >= 100) {
-                                                clearInterval(id);
-                                                i = 0;
-                                            } else {
-                                                width++;
-                                                elem.style.width = width + "%";
-                                                elem.innerHTML = width + "%";
-                                            }
-                                        }
-                                    }
-                                } 
-                            </script>
-            
-                            <br>
                         </li>
                     </ul>
                     {% endfor %}
