@@ -14,14 +14,14 @@
 
 .progressBar {
     position: relative;
-    width: 10%;
+    width: 100%;
     height: 40px;
     border: 1px solid #000000;
 }
 
 .progressFill {
     height: 100%;
-    background: greenyellow;
+    background: #A8C686;
     transition: width 0.5s;
 }
 
@@ -33,4 +33,5 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    color: white;
 }

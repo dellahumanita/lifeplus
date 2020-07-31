@@ -34,14 +34,22 @@ Dashboard
                 <div class="habits">
                     {% if data[key]|length > 0 %}
                     <!-- TODO display overall progress bar here-->
+                        {{ data[key][0].title }}
+                        <div class="progressBar">
+                            <div class="progressValue">0%</div>
+                            <div class="progressFill"></div>
+                            <p id="demo"></p>
+                        </div>
+                        <button onclick="pb.increment()">+</button>
+                        <script type="text/javascript" 
+                            src="../static/scripts/progress_bar_tutorial.js">
+                        </script>
 
-                    {% for habit in data[key] %}
+
+                    <!-- {% for habit in data[key] %}
                     <ul>
-                        <!-- updateable progress bars -->
                         <li>
-
                             {{ habit.title }}<br>
-                            <!-- TODO: progress bars for each individual habit -->
                             <div class="progressBar">
                                 <div class="progressValue">0%</div>
                                 <div class="progressFill"></div>
@@ -54,7 +62,7 @@ Dashboard
                         </li>
                     </ul>
                     {% endfor %}
-
+ -->
                 {% else %}        
                     <p style="text-align:justify;">
                         You have not added any habits.<br>
