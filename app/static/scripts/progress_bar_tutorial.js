@@ -25,10 +25,8 @@ class ProgressBar {
     }
 
     increment () {
-        var newPercentage = (this.value + 1) + '%';
-        this.fillElem.style.width = newPercentage;
-        this.valueElem.textContent = newPercentage;
-        document.getElementById("demo").innerHTML = "Hello world!";
-    }
+        let val = this.value + 1;
+        this.setValue(val);
+   }
 }
-let pb = new ProgressBar(document.querySelector('.progressBar'), 70);
+let pb = new ProgressBar(document.querySelector('.progressBar'), 0);
