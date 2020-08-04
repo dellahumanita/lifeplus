@@ -1,7 +1,8 @@
-class ProgressBar {
+export class ProgressBar {
     constructor (element, initialValue = 0) {
         this.valueElem = element.querySelector('.progressValue');
         this.fillElem = element.querySelector('.progressFill');
+        this.btn = document.createElement("BUTTON");
 
         this.setValue(initialValue);
     }
@@ -18,17 +19,48 @@ class ProgressBar {
         this.update();
     }
 
+    //  Updates the value in the bar 
     update () {
         const percentage = this.value + '%';
         this.fillElem.style.width = percentage;
         this.valueElem.textContent = percentage;
     }
 
-    increment () {
+    // Adds 1 to the value of the progress bar 
+    incrementValue () {
         let val = this.value + 1;
         this.setValue(val);
    }
 
+   // Creates a button with the selected text inside it 
+   createButton (text) {
+        //  style the basic button
+        this.btn.setAttribute("type", "button");
+        this.btn.setAttribute("class", "btn btn-light");
+        this.btn.innerHTML = text;
+
+        // set the text and style further 
+        if (text == "+") {
+            this.btn.setAttribute("id", "incrementBtn");
+            btn.style.cssText = "color: blue; text-align: right;"
+        }
+        else if (text == "-"){
+            this.btn.setAttribute("id", "decrementBtn");
+        }
+        
+        let position = document.getElementsByClassName("habits")[0]
+        position.appendChild(btn);
+    }
+
+    // Generates a random id if not already existing
+    __generateId () {
+        const id = Math.floor((Math.random() * 100) + 1);
+        return id;
+
+    }
+
+   
+
 
 }
-let pb = new ProgressBar(document.querySelector('.progressBar'), 0);
+// let pb = new ProgressBar(document.querySelector('.progressBar'), 0);

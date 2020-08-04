@@ -37,24 +37,28 @@ Dashboard
                         {% for habit in data[key] %}
                         <ul>
                             <li>
-                                {{ habit.title }}<br>
+                                {{ habit.title }}   <br>
                                 <div class="progressBar">
                                     <!-- Bar -->
                                     <div class="progressValue">0%</div>
                                     <div class="progressFill"></div>
-                                    <!-- Buttons -->
-                                    <div class="progressButtons">
-                                        <script type="text/javascript"
-                                        src="../static/scripts/buttons.js">
-                                        </script>
-                                    </div>
                                 </div>
+                                <!-- Buttons -->
+                                <div class="progressButtons"></div>
+
                             </li>
+                            <script type="module"
+                                src="../static/scripts/system.js"></script>
+
                         </ul>
                         {% endfor %}
-                        <script type="text/javascript" 
+                        <!-- <script type="text/javascript" 
                             src="../static/scripts/progressBar.js">
                         </script>
+                        <script type="text/javascript"
+                            src="../static/scripts/buttons.js">
+                        </script>     -->
+
 
                 {% else %}        
                     <p style="text-align:justify;">
