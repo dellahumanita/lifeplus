@@ -52,13 +52,6 @@ export class ProgressBar {
         position.appendChild(btn);
     }
 
-    // Generates a random id if not already existing
-    __generateId () {
-        const id = Math.floor((Math.random() * 100) + 1);
-        return id;
-
-    }
-
    
 
 

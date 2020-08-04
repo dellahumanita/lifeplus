@@ -1,38 +1,21 @@
 #TODO
 
 [x]  BACKEND
-    -  errors
-        -   changed relationship type to INT, 
-            but is it registering in the db?
-            if yes, can we add the system/user 
-            as instance to link the tables 
-            instead of ids?
-    
-    -   add habit instances for user della
-    -   add a system instance for user nira
+     -- nothing yet --
 
 
 []  FRONTEND
-    +   web form pages 
-        +   system creation
-            -   functions
-            -   template
-            -   route
-            +   db
-        +   habit creation
-            -   functions
-            +   template
-            +   route
-            +   db
-
-        +   error messages
-            +   system title with same name for 
-                the same user
-            +   same habit title for the same system
-                for the same user
-
-    +   overview/dashboard 
-        +   view existing systems
-        +   view existing habits for each 
-            system
+    +  dashboard 
+        -   create elements on the page
+            -   progress bar
+            -   increment/decrement buttons 
+        +   create a relationship between progressbar and button 
+                for each habit
+            +   extract habitID from database
+            +   use that id to generate unique ids for progressbar and button
+                //   note that the progressbar, button and query will all
+                        share the same id 
+        +   increment/decrement value on progress bar 
+        +   extract return value of increment/decrement 
+        +   keep track of value on progress bar to database 
 
