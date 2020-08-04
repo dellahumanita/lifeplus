@@ -34,35 +34,37 @@ Dashboard
                 <div class="habits">
                     {% if data[key]|length > 0 %}
                     <!-- TODO display overall progress bar here-->
-                        {{ data[key][0].title }}
-                        <div class="progressBar">
-                            <div class="progressValue">0%</div>
-                            <div class="progressFill"></div>
-                            <p id="demo"></p>
-                        </div>
-                        <button onclick="pb.increment()">+</button>
-                        <script type="text/javascript" 
-                            src="../static/scripts/progress_bar_tutorial.js">
-                        </script>
-
-
-                    <!-- {% for habit in data[key] %}
-                    <ul>
-                        <li>
-                            {{ habit.title }}<br>
+                            <!-- {{ data[key][0].title }}
                             <div class="progressBar">
                                 <div class="progressValue">0%</div>
                                 <div class="progressFill"></div>
+                                <p id="demo"></p>
                             </div>
-                            <button onclick="increment()">+</button>
+                            <button onclick="pb.increment()">+</button>
                             <script type="text/javascript" 
                                 src="../static/scripts/progress_bar_tutorial.js">
-                            </script>
+                            </script> -->
 
-                        </li>
-                    </ul>
-                    {% endfor %}
- -->
+
+                        {% for habit in data[key] %}
+                        <ul>
+                            <li>
+                                {{ habit.title }}<br>
+                                <div class="progressBar">
+                                    <div class="progressValue">0%</div>
+                                    <div class="progressFill"></div>
+                                    <script type="text/javascript"
+                                        src="../static/scripts/buttons.js">
+                                    </script>
+                                </div>
+                                <!-- <button onclick="pb.increment()" class="increment">+</button> -->
+                            </li>
+                        </ul>
+                        {% endfor %}
+                        <script type="text/javascript" 
+                            src="../static/scripts/progressBar.js">
+                        </script>
+
                 {% else %}        
                     <p style="text-align:justify;">
                         You have not added any habits.<br>

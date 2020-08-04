@@ -28,5 +28,7 @@ class ProgressBar {
         let val = this.value + 1;
         this.setValue(val);
    }
+
+
 }
 let pb = new ProgressBar(document.querySelector('.progressBar'), 0);
