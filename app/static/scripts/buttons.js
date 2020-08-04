@@ -3,9 +3,11 @@
 function addButton (symbol) {
     let btn = document.createElement("BUTTON");
     let buttonPosition = document.getElementsByClassName("habits")[0];
-
+    
+    btn.setAttribute("id", "progressButton");
     btn.innerHTML = symbol;
     buttonPosition.appendChild(btn);
+
 }
 
 addButton("-");
