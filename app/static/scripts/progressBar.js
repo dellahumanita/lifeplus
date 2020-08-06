@@ -1,3 +1,4 @@
+//  DO NOT USE ANYMORE
 export class ProgressBar {
     constructor (element, initialValue = 0) {
         this.valueElem = element.querySelector('.progressValue');

@@ -1,5 +1,9 @@
-//TODO
-console.log("new version");
+//TODO: fix constructor variables so that the progressBars 
+//      are in the progressBar functions, same with the buttons 
+//TODO: make sure that they are pointing to the correct div with
+//      their correspoinding hid
+
+//FINAL SYSTEM SCRIPT
 
 export class System {
     constructor (id) {

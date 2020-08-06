@@ -4,6 +4,7 @@ function findHabitIds () {
     return document.getElementsByClassName("habitId");
 }
 
+//TODO: attach all functions related to their creation here
 function main() {
     let habitIds = findHabitIds();
     let systems = {};
