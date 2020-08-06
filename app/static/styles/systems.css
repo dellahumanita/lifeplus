@@ -3,12 +3,14 @@
     position: relative;
     width: 100%;
     height: 40px;
-    /* border: 1px solid #000000; */
+    background: white;
+    border-radius: 40px;
 }
 
 .progressFill {
     height: 100%;
     background: #A8C686;
+    border-radius: 40px;
     transition: width 0.5s;
 }
 

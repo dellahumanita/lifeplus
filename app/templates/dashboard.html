@@ -47,8 +47,13 @@ Dashboard
                                 <div class="progressButtons"></div>
 
                             </li>
-                            <script type="module"
-                                src="../static/scripts/system.js"></script>
+                            <script type="text/javascript"
+                                src="../static/scripts/system.js">
+                                
+                                let sys = new System( '{{ habit.hid }}' );
+                                console.log("Success!");
+
+                            </script>
 
                         </ul>
                         {% endfor %}
