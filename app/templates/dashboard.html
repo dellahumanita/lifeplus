@@ -32,37 +32,36 @@ Dashboard
             <div class="system-mini">
                <h2>{{ key.title }}</h2>
                 <div class="habits">
+                    <!-- if there are any habits do -->
                     {% if data[key]|length > 0 %}
-
                         {% for habit in data[key] %}
                         <ul>
                             <li>
-                                {{ habit.title }}   <br>
+                                <div class="habitId" >
+                                    {{ habit.hid }}
+                                    <br>
+                                </div>
+                                <!-- Title -->
+                                <div class="habitTitle">
+                                    {{ habit.title }}   
+                                    <br>
+                                </div>
+                                <!-- Progress Bar -->
                                 <div class="progressBar">
-                                    <!-- Bar -->
                                     <div class="progressValue">0%</div>
                                     <div class="progressFill"></div>
                                 </div>
                                 <!-- Buttons -->
                                 <div class="progressButtons"></div>
-
                             </li>
-                            <script type="text/javascript"
-                                src="../static/scripts/system.js">
-                                
-                                let sys = new System( '{{ habit.hid }}' );
-                                console.log("Success!");
-
-                            </script>
 
                         </ul>
                         {% endfor %}
-                        <!-- <script type="text/javascript" 
-                            src="../static/scripts/progressBar.js">
+
+                        <!-- TODO -->
+                        <script type="module"
+                            src="/static/scripts/barsAndButtons.js">
                         </script>
-                        <script type="text/javascript"
-                            src="../static/scripts/buttons.js">
-                        </script>     -->
 
 
                 {% else %}        
