@@ -11,9 +11,11 @@ export class System {
         this.progressBar = document.querySelector('.progressBar');
         this.valueElem = this.progressBar.querySelector('.progressValue');
         this.fillElem = this.progressBar.querySelector('.progressFill');
-  
         this.btn = document.createElement("BUTTON");
-
+        
+        this.createProgressBar();
+        this.createButton("-");
+        this.createButton("+");
     }
 
     getId () {
@@ -27,14 +29,17 @@ export class System {
     //  PROGRESS BAR FUNCTIONS 
     createProgressBar(initialValue = 0) {
         this.setValue(initialValue);
-        this.progressBar.setAttribute("id", this.generateId("progressBar"));    
+
+        this.progressBar.setAttribute("id", this.generateId("progressBar"));
+        this.valueElem.setAttribute("id", this.generateId("progressValue")); 
+        this.fillElem.setAttribute("id", this.generateId("progressFill"));    
+   
     }
 
     setValue (newValue) {
         if (newValue < 0) {
             newValue = 0;
         }
-    
         if (newValue > 100) {
             newValue = 100;
         }
@@ -63,18 +68,21 @@ export class System {
 
         // set the text and style further 
         if (text == "+") {
-            let btnType = "incrementBtn";
-            this.btn.setAttribute("id", this.generateId(btnType));
-            btn.style.cssText = "color: blue; text-align: right;"
+            var btnId = this.generateId("incrementBtn");
+            this.btn.setAttribute("id", btnId);
+            this.btn.style.cssText = "color: blue; text-align: right;"
         }
-        else if (text == "-"){
-            let btnType = "decrementBtn";
-            this.btn.setAttribute("id", this.generateId(btnType));
+        if (text == "-"){
+            var btnId = this.generateId("decrementBtn");
+            // var idString = '#' + btnId;
+            this.btn.setAttribute("id", btnId);
         }
         
         // find position and add to HTML
-        let position = document.getElementsByClassName("habits")[0]
-        position.appendChild(btn);
+        let positions = document.getElementsByClassName("progressButtons");
+        for (let i = 0; i < positions.length; i++) {
+            positions[i].appendChild(this.btn);
+        }
 
    }
 

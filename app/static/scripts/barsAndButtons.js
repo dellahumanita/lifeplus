@@ -9,11 +9,12 @@ function main() {
     let habitIds = findHabitIds();
     let systems = {};
     for (let i = 0; i < habitIds.length; i++) {
-        systems[i] = {'sys': new System(habitIds[i])};
-        console.log(systems[i]);
+        let habitIdVal = habitIds[i].innerHTML.trim();
+        systems[i] = {'sys': new System(habitIdVal)};
+        //TODO: still showing undefined?
+        // console.log(systems[i]); 
     }
 
-    console.log(systems.length);
 }
 
 
