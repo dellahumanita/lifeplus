@@ -14,8 +14,9 @@ function main() {
         console.log(habitIdVal);
         habits[i] = {
             'habit': new Habit(habitIdVal,
-        document.querySelector("#" + CSS.escape(habitIdVal) ))};
+                document.querySelector("#" + CSS.escape(habitIdVal) )) };
     }
+
 
 }
 
