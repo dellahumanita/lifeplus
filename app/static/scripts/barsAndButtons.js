@@ -1,18 +1,20 @@
-import { System } from "./system.js";
+import { Habit } from "./habit.js";
 
 function findHabitIds () {
     return document.getElementsByClassName("habitId");
 }
 
-//TODO: attach all functions related to their creation here
 function main() {
     let habitIds = findHabitIds();
-    let systems = {};
+    console.log(habitIds);
+    let habits = {};
+    // iteratively create a new habit for each system
     for (let i = 0; i < habitIds.length; i++) {
         let habitIdVal = habitIds[i].innerHTML.trim();
-        systems[i] = {'sys': new System(habitIdVal)};
-        //TODO: still showing undefined?
-        // console.log(systems[i]); 
+        console.log(habitIdVal);
+        habits[i] = {
+            'habit': new Habit(habitIdVal,
+        document.querySelector("#" + CSS.escape(habitIdVal) ))};
     }
 
 }

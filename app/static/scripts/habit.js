@@ -5,18 +5,20 @@
 
 //FINAL SYSTEM SCRIPT
 
-export class System {
-    constructor (id) {
+export class Habit {
+    constructor (id, habitDiv) {
         this.id = id;
-        this.progressBar = document.querySelector('.progressBar');
+        //setup progress bar and it components
+        this.progressBar = habitDiv.querySelector('.progressBar');
         this.valueElem = this.progressBar.querySelector('.progressValue');
         this.fillElem = this.progressBar.querySelector('.progressFill');
-        this.btn = document.createElement("BUTTON");
-        
         this.createProgressBar();
-        this.createButton("-");
-        this.createButton("+");
+        //setup buttons 
+        this.incrementBtn = habitDiv.querySelector(".incrementButton");
+        this.decrementBtn = habitDiv.querySelector(".decrementButton");
+        
     }
+
 
     getId () {
         return this.id;
@@ -26,13 +28,20 @@ export class System {
         this.id = id;
     }
 
+    setElementId (element, id) {
+        element.setAttribute("id", this.generateId(element));
+    }
+
+
     //  PROGRESS BAR FUNCTIONS 
     createProgressBar(initialValue = 0) {
-        this.setValue(initialValue);
 
-        this.progressBar.setAttribute("id", this.generateId("progressBar"));
-        this.valueElem.setAttribute("id", this.generateId("progressValue")); 
-        this.fillElem.setAttribute("id", this.generateId("progressFill"));    
+        // generate and set ids for each component of the progress bar
+        this.setElementId(this.progressBar);
+        this.setElementId(this.valueElem);
+        this.setElementId(this.fillElem);
+
+        this.setValue(initialValue);
    
     }
 
@@ -81,13 +90,14 @@ export class System {
         // find position and add to HTML
         let positions = document.getElementsByClassName("progressButtons");
         for (let i = 0; i < positions.length; i++) {
-            positions[i].appendChild(this.btn);
+            positions[i].setAttribute("id", this.generateId("progressButtons"));
+            // positions[i].appendChild(this.btn);
         }
 
    }
 
    generateId (element) {
-       let elementId = element + this.id;
+       let elementId = element + this.getId();
 
        return elementId;
    }

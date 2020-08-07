@@ -37,20 +37,22 @@ Dashboard
                         {% for habit in data[key] %}
                         <ul>
                             <li>
-                                <div hidden class="habitId">
-                                    {{ habit.hid }}
+                                <div id="{{ habit.hid }}">
+                                    <!-- Habit Id -->
+                                    <div hidden class="habitId">{{ habit.hid }}</div>
+                                    <!-- Title -->
+                                    <div class="habitTitle">
+                                        {{ habit.title }}   
+                                    </div><br>
+                                    <!-- Progress Bar -->
+                                    <div class="progressBar">
+                                        <div class="progressValue">0%</div>
+                                        <div class="progressFill"></div>
+                                    </div>
+                                    <!-- Buttons -->
+                                    <div class="decrementButton"></div>
+                                    <div class="incrementButton"></div>
                                 </div>
-                                <!-- Title -->
-                                <div class="habitTitle">
-                                    {{ habit.title }}   
-                                </div><br>
-                                <!-- Progress Bar -->
-                                <div class="progressBar">
-                                    <div class="progressValue">0%</div>
-                                    <div class="progressFill"></div>
-                                </div>
-                                <!-- Buttons -->
-                                <div class="progressButtons"></div>
                             </li>
                             <script type="module"
                                 src="/static/scripts/barsAndButtons.js">
@@ -59,7 +61,7 @@ Dashboard
                         </ul>
                         {% endfor %}
 
-                        <!-- TODO: edit script -->
+                        <!-- TODO: edit/find proper position for script -->
 
 
                 {% else %}        
