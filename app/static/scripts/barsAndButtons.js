@@ -6,16 +6,24 @@ function findHabitIds () {
 
 function main() {
     let habitIds = findHabitIds();
-    console.log(habitIds);
-    let habits = {};
+    let habits = [];
+
     // iteratively create a new habit for each system
     for (let i = 0; i < habitIds.length; i++) {
         let habitIdVal = habitIds[i].innerHTML.trim();
-        console.log(habitIdVal);
         habits[i] = {
-            'habit': new Habit(habitIdVal,
+            'habitObject': new Habit(habitIdVal,
                 document.querySelector("#" + CSS.escape(habitIdVal) )) };
     }
+
+
+    for (let i = 0; i < habits.length; i++) {
+        var habitObj = habits[i].habitObject;
+        habitObj.createProgressBar();
+        habitObj.createButtons();
+
+    }
+
 
 
 }
