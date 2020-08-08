@@ -1,10 +1,3 @@
-//TODO: fix constructor variables so that the progressBars 
-//      are in the progressBar functions, same with the buttons 
-//TODO: make sure that they are pointing to the correct div with
-//      their correspoinding hid
-
-//FINAL SYSTEM SCRIPT
-
 export class Habit {
     constructor (id, habitDiv) {
         // initialize fields 
@@ -45,16 +38,16 @@ export class Habit {
 
     // generates and sets the id of the div 
     __setDivId (div, name) {
-        div.setAttribute("id", this.__generateId(div));
+        div.setAttribute("id", this.__generateId(name));
     }
 
 
     // MAIN function create a function bar
     createProgressBar(initialValue = 0) {
         // generate and set ids for each component of the progress bar
-        this.__setDivId(this.progressBar);
-        this.__setDivId(this.valueElem);
-        this.__setDivId(this.fillElem);
+        this.__setDivId(this.progressBar, "progressBar");
+        this.__setDivId(this.valueElem, "progressValue");
+        this.__setDivId(this.fillElem, "progressFill");
 
         this.__setValue(initialValue);
    
@@ -100,28 +93,36 @@ export class Habit {
    // MAIN function to create the button 
    createButtons () {
         // create "-" button
-        this.__createBtnElement("-", "minusBtn", 'this.decrementValue();',
-            this.decrementButton);
+        this.__createBtnElement("-", "minusBtn", "this.decrementValue();",
+            "decrementButton", this.decrementButton);
         // create "+" button
-        this.__createBtnElement("+", "plusBtn", 'this.incrementValue();',
-        this.incrementButton, "color: blue; text-align: right;"); 
+        this.__createBtnElement("+", "plusBtn", "this.incrementValue();",
+        "incrementButton", this.incrementButton); 
 
    }
 
 
    // actually creating the button elements
-   __createBtnElement (text, btnName, task, div, styling=0) {
+   __createBtnElement (text, btnName, task, divName, div) {
         let btn = document.createElement("BUTTON"); 
         btn.setAttribute("type", "button");
         btn.setAttribute("class", "btn btn-light");
+        btn.style.cssText = "margin: 10px; display: inline-block;"
         btn.innerHTML = text;
-        let btnDivId = this.__generateId(div);
+
+        // set id of div
+        let btnDivId = this.__generateId(divName);
+        this.__setDivId(div, divName);
+
+        // set id and and function of button
         btn.setAttribute("id", this.__generateId(btnName));
         btn.setAttribute("onclick", task);
-        // btn.styling.cssText =  styling;
+
+        // find position and add to the html
         let position = document.getElementById(btnDivId);
         position.appendChild(btn);
    }
+
 
 
 }

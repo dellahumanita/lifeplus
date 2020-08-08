@@ -38,6 +38,7 @@ Dashboard
                         <ul>
                             <li>
                                 <div id="{{ habit.hid }}">
+
                                     <!-- Habit Id -->
                                     <div hidden class="habitId">{{ habit.hid }}</div>
                                     <!-- Title -->
@@ -50,8 +51,17 @@ Dashboard
                                         <div class="progressFill"></div>
                                     </div>
                                     <!-- Buttons -->
-                                    <div class="decrementButton"></div>
-                                    <div class="incrementButton"></div>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="decrementButton"></div>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="incrementButton"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </li>
 
