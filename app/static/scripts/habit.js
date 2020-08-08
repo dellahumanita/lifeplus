@@ -3,7 +3,6 @@ export class Habit {
         // initialize fields 
         this.id = id;
         this.habitDiv = habitDiv
-        console.log(this.habitDiv);
 
         //setup progress bar and its components
         this.progressBar = this.habitDiv.querySelector('.progressBar');
@@ -78,8 +77,8 @@ export class Habit {
 
     // adds 1 to the value for the incrementButton
     incrementValue () {
-        let val = this.value + 1;
-        this.__setValue(val);
+        // let val = this.value + 1;
+        this.__setValue(this.value + 1);
    }
 
 
@@ -93,14 +92,17 @@ export class Habit {
    // MAIN function to create the button 
    createButtons () {
         // create "-" button
-        this.__createBtnElement("-", "minusBtn", "this.decrementValue();",
+        this.__createBtnElement("-", "minusBtn", this.decrementValue,
             "decrementButton", this.decrementButton);
         // create "+" button
-        this.__createBtnElement("+", "plusBtn", "this.incrementValue();",
+        this.__createBtnElement("+", "plusBtn", this.incrementValue,
         "incrementButton", this.incrementButton); 
 
    }
 
+   testMethod () {
+       alert("Hello world");
+   }
 
    // actually creating the button elements
    __createBtnElement (text, btnName, task, divName, div) {
@@ -116,7 +118,12 @@ export class Habit {
 
         // set id and and function of button
         btn.setAttribute("id", this.__generateId(btnName));
-        btn.setAttribute("onclick", task);
+        if (btnName == "plusBtn") {
+            btn.onclick = this.incrementValue;
+        }
+        else {
+            btn.onclick = this.decrementValue;
+        }
 
         // find position and add to the html
         let position = document.getElementById(btnDivId);
