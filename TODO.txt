@@ -9,13 +9,28 @@
         -   create elements on the page
             -   progress bar
             -   increment/decrement buttons 
-        +   create a relationship between progressbar and button 
+        -   create a relationship between progressbar and button 
                 for each habit
-            +   extract habitID from database
-            +   use that id to generate unique ids for progressbar and button
+            -   extract habitID from database
+            -   use that id to generate unique ids for progressbar and button
                 //   note that the progressbar, button and query will all
                         share the same id 
-        +   increment/decrement value on progress bar 
+        -   increment/decrement value on progress bar 
         +   extract return value of increment/decrement 
         +   keep track of value on progress bar to database 
+            +   create a query to extract progress value
+            +   pass the value to the html
+            +   create js functions: 
+                1.  store progress bar html property value in db 
+                2.  when dashboard is loaded, reload that value to
+                    progressValue
+                3.  incrementValue(goalValue) and decrementValue(goalValue) 
+                    returns n 
+                    where n = value to be incremented dependent on 
+                    their goalValue
+                    e.g. if goalValue = 5:
+                            increment by 1 results in ' (1/5*100) ' + '%' 
+                            // i.e. 20% of progress
+                            therefore n = (1/goalValue * 100)
+
 

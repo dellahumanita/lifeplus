@@ -77,13 +77,9 @@ export class Habit {
 
     // adds 1 to the value for the incrementButton
     incrementValue () {
-        console.log(this.value); // works as a function in the main, but not with the onclick attribute?
+        console.log(this.value); 
         let val = this.value + 1;
-        this.__setValue(val); //FIXME: not a function
-
-        // let valueId = this.__generateId("progressValue");
-        // let val = document.getElementById(valueId).innerHTML;
-        // console.log(val);
+        this.__setValue(val); 
    }
 
 
@@ -97,20 +93,17 @@ export class Habit {
    // MAIN function to create the button 
    createButtons () {
         // create "-" button
-        this.__createBtnElement("-", "minusBtn", this.decrementValue,
+        this.__createBtnElement("-", "minusBtn",
             "decrementButton", this.decrementButton);
         // create "+" button
-        this.__createBtnElement("+", "plusBtn", this.incrementValue,
-        "incrementButton", this.incrementButton); 
+        this.__createBtnElement("+", "plusBtn",
+            "incrementButton", this.incrementButton); 
 
    }
 
-   testMethod () {
-       alert("Hello world");
-   }
 
    // actually creating the button elements
-   __createBtnElement (text, btnName, task, divName, div) {
+   __createBtnElement (text, btnName, divName, div) {
         let btn = document.createElement("BUTTON"); 
         btn.setAttribute("type", "button");
         btn.setAttribute("class", "btn btn-light");
