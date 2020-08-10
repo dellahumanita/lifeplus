@@ -2,7 +2,7 @@ export class Habit {
     constructor (id, habitDiv) {
         // initialize fields 
         this.id = id;
-        this.habitDiv = habitDiv
+        this.habitDiv = habitDiv;
 
         //setup progress bar and its components
         this.progressBar = this.habitDiv.querySelector('.progressBar');
@@ -77,8 +77,13 @@ export class Habit {
 
     // adds 1 to the value for the incrementButton
     incrementValue () {
-        // let val = this.value + 1;
-        this.__setValue(this.value + 1);
+        console.log(this.value); // works as a function in the main, but not with the onclick attribute?
+        let val = this.value + 1;
+        this.__setValue(val); //FIXME: not a function
+
+        // let valueId = this.__generateId("progressValue");
+        // let val = document.getElementById(valueId).innerHTML;
+        // console.log(val);
    }
 
 
@@ -118,13 +123,16 @@ export class Habit {
 
         // set id and and function of button
         btn.setAttribute("id", this.__generateId(btnName));
+        var self = this;
+
         if (btnName == "plusBtn") {
-            btn.onclick = this.incrementValue;
+            btn.addEventListener("click", function() { 
+                self.incrementValue();    });
         }
         else {
-            btn.onclick = this.decrementValue;
+            btn.addEventListener("click", function() {
+                self.decrementValue();    });
         }
-
         // find position and add to the html
         let position = document.getElementById(btnDivId);
         position.appendChild(btn);
