@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-
 <!-- Header -->
 {% block header %}
 Dashboard
@@ -29,26 +28,54 @@ Dashboard
     <div class="row">
         {% for key in data %}
         <div class="col-sm-5">
+
             <div class="system-mini">
-                <h2>
-                    <!-- Click System Title for Full View -->
-                    <a href="{{ url_for('view_system', username=current_user.username) }}">{{ key.title }}</a>
-                </h2>
+               <h2>{{ key.title }}</h2>
                 <div class="habits">
+                    <!-- if there are any habits do -->
                     {% if data[key]|length > 0 %}
-                    {% for habit in data[key] %}
-                    <ul>
-                        <li>{{ habit.title }}</li>
-                    </ul>
-                    {% endfor %}
+                        {% for habit in data[key] %}
+                        <ul>
+                            <li>
+                                <div id="{{ habit.hid }}">
+                                    <!-- Habit Id -->
+                                    <div hidden class="habitId">{{ habit.hid }}</div>
+                                    <!-- Title -->
+                                    <div class="habitTitle">
+                                        {{ habit.title }}   
+                                    </div><br>
+                                    <!-- Progress Bar -->
+                                    <div class="progressBar">
+                                        <div class="progressValue">0%</div>
+                                        <div class="progressFill"></div>
+                                    </div>
+                                    <!-- Buttons -->
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="decrementButton"></div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="incrementButton"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                        </ul>
+                        {% endfor %}
+
                 {% else %}        
-                <p style="text-align:justify;">
-                    You have not added any habits.<br>
-                    Click <a href="{{ url_for('create_habit', username=current_user.username) }}">here</a>
-                    to add one!          
-                </p>
+                    <p style="text-align:justify;">
+                        You have not added any habits.<br>
+                        Click <a href="{{ url_for('create_habit', username=current_user.username) }}">here</a>
+                        to add one!          
+                    </p>
                 {% endif %}
                 </div>
+
             </div>
         </div>
         {% endfor %}
@@ -60,6 +87,11 @@ Dashboard
         </p>
     {% endif %}
 </div>
+
+<script type="module"
+    src="/static/scripts/barsAndButtons.js">
+</script>
+
 
 <div class="row">
         <div class="col-sm-4">

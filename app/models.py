@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+        
 
 class System(db.Model):
     '''This represents a system that a user has created to store their habits'''
@@ -48,13 +49,14 @@ class System(db.Model):
     # edits the description of the system
     def edit(self, text):
         self.descr = text 
+        
 
 class Habit(db.Model):
     ''' This represents a singular habit that the user creates for their system'''
 
     hid = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True)
-    progress = db.Column(db.Integer, index=True)
+    progress = db.Column(db.Integer, default=0, index=True)
     goal = db.Column(db.Integer, index=True)
     system_id = db.Column(db.Integer, db.ForeignKey('system.sid'), nullable=False)
 
