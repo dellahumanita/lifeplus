@@ -24,6 +24,10 @@ function main() {
 
     }
 
+    // var example = habits[0].habitObject;
+    // example.incrementValue();
+    // example.incrementValue();
+
 
 
 }
