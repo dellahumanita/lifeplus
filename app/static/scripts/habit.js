@@ -86,7 +86,9 @@ export class Habit {
             this.trackingValue++;
         }
 
-        this.__setValue(this.trackingValue); 
+        this.__setValue(this.trackingValue);
+
+        //TODO: update db 
    }
 
 
@@ -96,6 +98,8 @@ export class Habit {
         this.trackingValue--;
        }
        this.__setValue(this.trackingValue);
+
+        //TODO: update db 
    }
    
 

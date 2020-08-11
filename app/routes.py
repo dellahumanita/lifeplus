@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from app import app, db 
 from app.forms import LoginForm, RegistrationForm, SystemCreation, HabitCreation
 from flask_login import current_user, login_user, logout_user, login_required
@@ -89,9 +89,49 @@ def dashboard(username):
         else:
             raise Exception('No habits found.')
         data[system] = habits
-        
+    
+
+    # call get_trackers to update db with new tracking values
     
     return render_template('dashboard.html', title='Dashboard', systems=systems, data=data)
+
+
+@app.route('/__tracking_bg_process')
+def __tracking_bg_process():
+    try:
+        tracking_value = request.args.get('tracker')
+        print("tracking_value: ", tracking_value)
+        if tracking_value >= 0:
+            return jsonify(result="You increased your streak!")
+        else:
+            return jsonify(result="Try again another day.")
+    except Exception as e:
+        return str(e)
+
+    return render_template('dashboard.html')
+
+
+
+'''Trial Function to retrieve habit progress'''
+@app.route('/<username>/dashboard/interactive')
+def interactive(username):
+    try:
+        return render_template('interactive.html')
+    except Exception as e:
+        return (str(e))
+
+@app.route('/__background_process')
+def __background_process():
+    try: 
+        lang = request.args.get('proglang')
+        if str(lang).lower() == 'python':
+            return jsonify(result='You are wise!')
+        else:
+            return jsonify(result='Try again.')
+    except Exception as e:
+        return (str(e))
+
+    return render_template('interactive.html')
 
 
 '''New System Form'''

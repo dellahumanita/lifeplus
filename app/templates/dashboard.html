@@ -47,11 +47,19 @@ Dashboard
                                     <!-- Progress Bar -->
                                     <div class="progressBar">
                                         <div class="progressValue">
-                                            <span class="trackingValue">{{ habit.progress }}</span>
+                                            <!-- html progress values -->
+                                            <span class="trackingValue" name="tracker">
+                                                {{ habit.progress }}</span>
+                                            <br>
                                             <span hidden class="goalValue">{{ habit.goal }}</span>
                                         </div>
                                         <div class="progressFill"></div>
                                     </div>
+                                    <a href="#" id=process_input>
+                                        <button class='btn btn-default'>Track!</button>
+                                    </a>
+                                    <p id="result">...</p>
+
                                     <!-- Buttons -->
                                     <div class="container-fluid">
                                         <div class="row">
@@ -91,9 +99,7 @@ Dashboard
     {% endif %}
 </div>
 
-<script type="module"
-    src="/static/scripts/barsAndButtons.js">
-</script>
+
 
 
 <div class="row">

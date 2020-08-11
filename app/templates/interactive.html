@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block header %} Testing AJAX jQuery {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>What is the best programming language?</h3>
+    <form>
+        <input type=text size=5 name=proglang>
+        <a href="#" id=process_input>
+            <button class='btn btn-default'>Submit</button>
+        </a>
+    
+    </form>
+    <p id=result></p>
+</div>
+
+
+{% endblock %}
