@@ -46,7 +46,10 @@ Dashboard
                                     </div><br>
                                     <!-- Progress Bar -->
                                     <div class="progressBar">
-                                        <div class="progressValue">{{ habit.progress ~ "%" }}</div>
+                                        <div class="progressValue">
+                                            <span class="trackingValue">{{ habit.progress }}</span>
+                                            <span hidden class="goalValue">{{ habit.goal }}</span>
+                                        </div>
                                         <div class="progressFill"></div>
                                     </div>
                                     <!-- Buttons -->

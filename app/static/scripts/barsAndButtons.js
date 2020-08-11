@@ -4,6 +4,14 @@ function findHabitIds () {
     return document.getElementsByClassName("habitId");
 }
 
+function findTrackingValues() {
+    return document.querySelectorAll(".trackingValue");
+}
+
+function findGoalValues() {
+    return document.querySelectorAll(".goalValue");
+}
+
 function main() {
     let habitIds = findHabitIds();
     let habits = [];
@@ -16,18 +24,16 @@ function main() {
                 document.querySelector("#" + CSS.escape(habitIdVal) )) };
     }
 
+    let trackingValues = findTrackingValues();
+    let goalValues = findGoalValues();
 
     for (let i = 0; i < habits.length; i++) {
         var habitObj = habits[i].habitObject;
-        habitObj.createProgressBar();
+        var trackingVal = trackingValues[i].innerHTML.trim();
+        habitObj.createProgressBar(trackingVal);
         habitObj.createButtons();
 
     }
-
-    // var example = habits[0].habitObject;
-    // example.incrementValue();
-    // example.incrementValue();
-
 
 
 }
@@ -35,4 +41,3 @@ function main() {
 
 main();
 
-console.log("Success!");

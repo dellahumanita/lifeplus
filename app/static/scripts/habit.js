@@ -12,6 +12,9 @@ export class Habit {
         //setup buttons 
         this.incrementButton = this.habitDiv.querySelector(".incrementButton");
         this.decrementButton = this.habitDiv.querySelector(".decrementButton");
+
+        this.trackingValue = parseInt(this.habitDiv.querySelector(".trackingValue").innerHTML.trim());
+        this.goalValue = parseInt(this.habitDiv.querySelector(".goalValue").innerHTML.trim());
     }
 
 
@@ -55,10 +58,12 @@ export class Habit {
 
     // sets the value of the progress bar
     __setValue (newValue) {
-        if (newValue < 0) {
+        let percentage = Math.round((newValue/this.goalValue) * 100)
+
+        if (percentage < 0) {
             newValue = 0;
         }
-        if (newValue > 100) {
+        if (percentage > 100) {
             newValue = 100;
         }
 
@@ -69,7 +74,7 @@ export class Habit {
 
     // __updates the text of the progress bar value
     __update () {
-        const percentage = this.value + '%';
+        const percentage = Math.round((this.trackingValue/this.goalValue) * 100) + '%';
         this.fillElem.style.width = percentage;
         this.valueElem.textContent = percentage;
     }
@@ -77,16 +82,20 @@ export class Habit {
 
     // adds 1 to the value for the incrementButton
     incrementValue () {
-        console.log(this.value); 
-        let val = this.value + 1;
-        this.__setValue(val); 
+        if (this.trackingValue < this.goalValue) {
+            this.trackingValue++;
+        }
+
+        this.__setValue(this.trackingValue); 
    }
 
 
    // subtracts 1 from the value for the decrementButton
    decrementValue () {
-       let val = this.value - 1;
-       this.__setValue(val);
+       if (this.trackingValue > 0) {
+        this.trackingValue--;
+       }
+       this.__setValue(this.trackingValue);
    }
    
 
@@ -126,6 +135,7 @@ export class Habit {
             btn.addEventListener("click", function() {
                 self.decrementValue();    });
         }
+
         // find position and add to the html
         let position = document.getElementById(btnDivId);
         position.appendChild(btn);
