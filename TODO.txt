@@ -2,13 +2,13 @@
 
 []  BACKEND
     +   keep track of value on progress bar to database 
-        +   create a query to extract progress value
-        +   pass the value to the html
-        +   create js functions: 
-            1.  store progress bar html property value in db 
-            2.  when dashboard is loaded, reload that value to
+        -   create a query to extract progress value
+        -   pass the value to the html
+        -   create js functions: 
+            -   1.  store progress bar html property value in db 
+            -   2.  when dashboard is loaded, reload that value to
                 progressValue
-            3.  incrementValue(goalValue) and decrementValue(goalValue) 
+            -    3.  incrementValue(goalValue) and decrementValue(goalValue) 
                 returns n 
                 where n = value to be incremented dependent on 
                 their goalValue
@@ -16,6 +16,8 @@
                         increment by 1 results in ' (1/5*100) ' + '%' 
                         // i.e. 20% of progress
                         therefore n = (1/goalValue * 100)
+        +   update progress value into db 
+            +   extract html progressvalue and bring 
 
 
 
