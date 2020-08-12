@@ -76,33 +76,35 @@ def wip():
 @login_required
 def dashboard(username):
     '''This page shows the user an overview of all existing systems and habits'''
-    
-    systems = System.query.filter_by(user_id=current_user.id).all()
+    try:
+        systems = System.query.filter_by(user_id=current_user.id).all()
 
-    data = dict()
-    for system in systems:
-        habits = []
-        hquery = Habit.query.filter_by(system_id=system.sid).all()
-        if hquery is not None:
-            for habit in hquery:
-                habits.append(habit)
-        else:
-            raise Exception('No habits found.')
-        data[system] = habits
+        data = dict()
+        for system in systems:
+            habits = []
+            hquery = Habit.query.filter_by(system_id=system.sid).all()
+            if hquery is not None:
+                for habit in hquery:
+                    habits.append(habit)
+            else:
+                raise Exception('No habits found.')
+            data[system] = habits
+    except Exception as e:
+        return str(e)
     
-
-    # call get_trackers to update db with new tracking values
+    # TODO: call get_trackers to update db with new tracking values
     
     return render_template('dashboard.html', title='Dashboard', systems=systems, data=data)
 
 
+#TODO: helping function to extract progress value after user updates
 @app.route('/__tracking_bg_process')
 def __tracking_bg_process():
     try:
-        tracking_value = request.args.get('tracker')
+        tracking_value = request.args.get('trackingValue')
         print("tracking_value: ", tracking_value)
         if tracking_value >= 0:
-            return jsonify(result="You increased your streak!")
+            return jsonify(result="Keep going!")
         else:
             return jsonify(result="Try again another day.")
     except Exception as e:
@@ -124,10 +126,11 @@ def interactive(username):
 def __background_process():
     try: 
         lang = request.args.get('proglang')
+        print("lang : ", lang)
         if str(lang).lower() == 'python':
             return jsonify(result='You are wise!')
         else:
-            return jsonify(result='Try again.')
+            return jsonify(result='Try again')
     except Exception as e:
         return (str(e))
 
@@ -191,16 +194,4 @@ def create_habit(username):
 
 #     return 
 
-
-'''
-
-@app.route('/<username>/edit_system', methods=['GET', 'POST'])
-@login_required
-def edit_system(username):
-    # Edits an existing system
-
-    return
-
-
-'''
 

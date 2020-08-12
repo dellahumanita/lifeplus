@@ -89,6 +89,7 @@ export class Habit {
         this.__setValue(this.trackingValue);
 
         //TODO: update db 
+        // FIXME: this.__getTrackingValJson();
    }
 
 
@@ -146,5 +147,53 @@ export class Habit {
    }
 
 
+   //   jQuery script to extract this.trackingValue
+   //       then pass it pack to the jinja template
+   //       to update the progress value in the db
+   __getTrackingValJson() {
+    // extract trackingValue from either the class or the DOM
+    let habitDiv = 'div#' + this.id;
+    // set the document
+    $(habitDiv).ready( function () {
+        // when incrementButton or decrementButton has been clicked, 
+        $("div.incrementButton").click( function() {
+            var content = "Keep it up!";
+            $("message").text(content);
+        });
 
-}
+
+        //  get the tracking value
+        // var tracker = $('div.trackingValue').html();
+        // console.log(tracker);
+        // $.getJSON('/__tracking_bg_process',
+        //     {   
+        //         //jsonify the value
+        //         trackingValue: tracker,
+        //     },  function(data) {
+        //         // return to result
+        //         $("#result").text(data.result);
+        //     });
+        // return false;
+    });
+}}
+
+// __incrementBtnListener() {
+//     let habitDiv = 'div#' + this.id;
+//     // set the document
+//     $(habitDiv).ready( 
+//         function () {
+//             // when .incrementButton has been clicked, 
+//             $("div.incrementButton").click( 
+//                 function() {
+//                     var content = "Keep it up!";
+//                     $("message").text(content);
+//                 });
+//         });
+
+    // $(habitDiv).ready(function() {
+    //     $("div.incrementButton").click(function () {
+    //     var content = "Keep it up!";
+    //     $("#nessage").text( content );
+    //     });
+    // });
+// }

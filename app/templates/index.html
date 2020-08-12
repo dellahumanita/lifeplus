@@ -18,6 +18,9 @@
         <a href="{{ url_for('dashboard', username=current_user.username) }}" class="button">
             View Dashboard
         </a> 
+        <a href="{{ url_for('interactive', username=current_user.username) }}" class="button">
+            Testing
+        </a>
     {% endif %}
 
 
