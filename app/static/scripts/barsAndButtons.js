@@ -8,8 +8,6 @@ function findTrackingValues() {
     return document.querySelectorAll(".trackingValue");
 }
 
-export {findHabitIds, findTrackingValues};
-
 function findGoalValues() {
     return document.querySelectorAll(".goalValue");
 }
@@ -43,4 +41,3 @@ function main() {
 
 main();
 
-// exported variables 

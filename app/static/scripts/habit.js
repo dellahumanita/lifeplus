@@ -1,7 +1,9 @@
+import * as seed from './seedrandom.js'
+
 export class Habit {
     constructor (id, habitDiv) {
         // initialize fields 
-        this.id = id;
+        this.id = id; //IMPORTANT: returns an id for the current HTML element 
         this.habitDiv = habitDiv;
 
         //setup progress bar and its components
@@ -15,6 +17,9 @@ export class Habit {
 
         this.trackingValue = parseInt(this.habitDiv.querySelector(".trackingValue").innerHTML.trim());
         this.goalValue = parseInt(this.habitDiv.querySelector(".goalValue").innerHTML.trim());
+
+        //message classes
+        this.message = this.habitDiv.querySelector(".message");
     }
 
 
@@ -88,7 +93,7 @@ export class Habit {
 
         this.__setValue(this.trackingValue);
 
-        //TODO: update db 
+        //TODO: update db and register a click
         // FIXME: this.__getTrackingValJson();
    }
 
@@ -135,65 +140,101 @@ export class Habit {
         if (btnName == "plusBtn") {
             btn.addEventListener("click", function() { 
                 self.incrementValue();    });
+                        //event handler to handle button clicking
+            this.createButtonListener(btn, "+");
+
         }
         else {
             btn.addEventListener("click", function() {
                 self.decrementValue();    });
+                    //event handler to handle button clicking
+            this.createButtonListener(btn, "-");
+
         }
 
         // find position and add to the html
         let position = document.getElementById(btnDivId);
         position.appendChild(btn);
+
+
+   }
+
+   //event handler to handle clicking
+   //   -   displays an encouraging message
+   //   -   registers the change in trackingValye
+   createButtonListener(buttonElem, buttonType) {
+       //choose messages
+       if (buttonType == "+") {
+        let plusMsg = this.generateMessage("+");
+        console.log(plusMsg);
+        this.showMessage(buttonElem, plusMsg);
+
+       }
+       
+       else {
+        let minusMsg = this.generateMessage("-");
+        console.log(minusMsg);
+        this.showMessage(buttonElem, minusMsg);
+ 
+       }
+
    }
 
 
-   //   jQuery script to extract this.trackingValue
-   //       then pass it pack to the jinja template
-   //       to update the progress value in the db
-   __getTrackingValJson() {
-    // extract trackingValue from either the class or the DOM
-    let habitDiv = 'div#' + this.id;
-    // set the document
-    $(habitDiv).ready( function () {
-        // when incrementButton or decrementButton has been clicked, 
-        $("div.incrementButton").click( function() {
-            var content = "Keep it up!";
-            $("message").text(content);
-        });
+   // jQuery function to load messages every time a click is registered 
+   showMessage(button, message) {
+    this.message.setAttribute("id", this.__generateId("message"));
+    var messageId = this.__generateId("message");
+    $(button).click(  function() {
+        console.log("registers a click for id " + this.id);
+            $('#' + messageId).text(message);
+   })
+}
 
 
-        //  get the tracking value
-        // var tracker = $('div.trackingValue').html();
-        // console.log(tracker);
-        // $.getJSON('/__tracking_bg_process',
-        //     {   
-        //         //jsonify the value
-        //         trackingValue: tracker,
-        //     },  function(data) {
-        //         // return to result
-        //         $("#result").text(data.result);
-        //     });
-        // return false;
-    });
-}}
+   generateMessage(type) {
+       let doingWellPhrases = [
+                "There you go!",
+                "Keep up the good work.",
+                "Keep it up.",
+                "Good job.",
+                "So proud of you!"
+            ]
 
-// __incrementBtnListener() {
-//     let habitDiv = 'div#' + this.id;
-//     // set the document
-//     $(habitDiv).ready( 
-//         function () {
-//             // when .incrementButton has been clicked, 
-//             $("div.incrementButton").click( 
-//                 function() {
-//                     var content = "Keep it up!";
-//                     $("message").text(content);
-//                 });
-//         });
+       let encouragingPhrases = [
+                "Hang in there.",
+                "Don’t give up.",
+                "Keep pushing.",
+                "Keep fighting!",
+                "Stay strong.",
+                "Never give up.",
+                "You can do it!"
+            ]
 
-    // $(habitDiv).ready(function() {
-    //     $("div.incrementButton").click(function () {
-    //     var content = "Keep it up!";
-    //     $("#nessage").text( content );
-    //     });
-    // });
-// }
+       if (type == "+") {
+            var randInt = this.__getRandomInt(0, doingWellPhrases.length);
+            var randomPhrase = doingWellPhrases[randInt];
+       }
+       else {
+            var randInt = this.__getRandomInt(0, encouragingPhrases.length);
+            var randomPhrase = encouragingPhrases[randInt];
+
+       }
+
+       return randomPhrase;
+   }
+
+
+   //function taken from MDN
+   //generates a random integer between min and max
+   //  FIXME: must be seeded to get a random number each time
+    __getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+  
+
+}
+
+// end of class
