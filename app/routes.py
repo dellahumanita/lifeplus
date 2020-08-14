@@ -92,21 +92,19 @@ def dashboard(username):
     except Exception as e:
         return str(e)
     
-    # TODO: call get_trackers to update db with new tracking values
     
     return render_template('dashboard.html', title='Dashboard', systems=systems, data=data)
 
 
-#TODO: helping function to extract progress value after user updates
-@app.route('/__tracking_bg_process')
+#FIXME: helping function to extract progress value after user updates
+@app.route('/__tracking_bg_process', methods=['POST'])
 def __tracking_bg_process():
     try:
-        tracking_value = request.args.get('trackingValue')
-        print("tracking_value: ", tracking_value)
-        if tracking_value >= 0:
-            return jsonify(result="Keep going!")
-        else:
-            return jsonify(result="Try again another day.")
+        if request.method == 'POST':
+            values = request.get_json();
+            print(values)
+            tracking_value = values['trackingValue']
+
     except Exception as e:
         return str(e)
 

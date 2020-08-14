@@ -18,6 +18,7 @@ export class Habit {
 
         //message classes
         this.message = this.habitDiv.querySelector(".message");
+        this.result = this.habitDiv.querySelector(".result");
     }
 
 
@@ -137,16 +138,14 @@ export class Habit {
         if (btnName == "plusBtn") {
             btn.addEventListener("click", function() { 
                 self.incrementValue();    });
-                        //event handler to handle button clicking
+            //event handler to handle button clicking
             this.createButtonListener(btn, "+");
-
         }
         else {
             btn.addEventListener("click", function() {
                 self.decrementValue();    });
-                    //event handler to handle button clicking
+            //event handler to handle button clicking
             this.createButtonListener(btn, "-");
-
         }
 
         // find position and add to the html
@@ -160,35 +159,34 @@ export class Habit {
    //   -   displays an encouraging message
    //   -   registers the change in trackingValye
    createButtonListener(buttonElem, buttonType) {
-       //choose messages
+       //choose messages to display and show them 
+       //   as the user clicks a button
        if (buttonType == "+") {
             let plusMsg = this.generateMessage("+");
-            // console.log(plusMsg);
             this.showMessage(buttonElem, plusMsg);
-
        }
-       
        else {
             let minusMsg = this.generateMessage("-");
-            // console.log(minusMsg);
             this.showMessage(buttonElem, minusMsg);
- 
        }
+
+       //FIXME: register the trackingValue and pass it to python as .json
+       this.getTrackingValue(buttonElem);
+
 
    }
 
 
    // jQuery function to load messages every time a click is registered 
    showMessage(button, message) {
-    this.message.setAttribute("id", this.__generateId("message"));
-    var messageId = this.__generateId("message");
-    $(button).click(  function() {
-        console.log("registers a click for id " + this.id);
-            $('#' + messageId).text(message);
-   })
-}
+        var messageId = this.__generateId("message");
+        this.message.setAttribute("id", messageId);
+        $(button).click(  function() {
+                $('#' + messageId).text(message);
+        })
+    }
 
-
+    //choose a message from an array and return it
    generateMessage(type) {
        let doingWellPhrases = [
                 "There you go!",
@@ -222,17 +220,29 @@ export class Habit {
    }
 
 
-   //function taken from MDN
+   //function taken from MDN and davidBau @
+   //   https://github.com/davidbau/seedrandom
    //generates a random integer between min and max
-   //  FIXME: must be seeded to get a random number each time
     __getRandomInt(min, max) {
         var seeder = new Math.seedrandom();
-        console.log("seeder : " + seeder); 
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(seeder() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
   
+
+  //TODO
+  getTrackingValue(button) {
+    //   var resultId = this.__generateId("result");
+    //   this.result.setAttribute("id", resultId);
+      $(button).click(  function() {
+          $.getJSON('/__tracking_bg_process',
+                {
+                    trackingValue: this.trackingValue,
+                });
+      });
+      console.log("Ran getTrackingValue()");
+  }
 
 }
 
