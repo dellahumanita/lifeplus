@@ -1,5 +1,3 @@
-import * as seed from './seedrandom.js'
-
 export class Habit {
     constructor (id, habitDiv) {
         // initialize fields 
@@ -94,7 +92,6 @@ export class Habit {
         this.__setValue(this.trackingValue);
 
         //TODO: update db and register a click
-        // FIXME: this.__getTrackingValJson();
    }
 
 
@@ -165,16 +162,16 @@ export class Habit {
    createButtonListener(buttonElem, buttonType) {
        //choose messages
        if (buttonType == "+") {
-        let plusMsg = this.generateMessage("+");
-        console.log(plusMsg);
-        this.showMessage(buttonElem, plusMsg);
+            let plusMsg = this.generateMessage("+");
+            // console.log(plusMsg);
+            this.showMessage(buttonElem, plusMsg);
 
        }
        
        else {
-        let minusMsg = this.generateMessage("-");
-        console.log(minusMsg);
-        this.showMessage(buttonElem, minusMsg);
+            let minusMsg = this.generateMessage("-");
+            // console.log(minusMsg);
+            this.showMessage(buttonElem, minusMsg);
  
        }
 
@@ -229,9 +226,11 @@ export class Habit {
    //generates a random integer between min and max
    //  FIXME: must be seeded to get a random number each time
     __getRandomInt(min, max) {
+        var seeder = new Math.seedrandom();
+        console.log("seeder : " + seeder); 
         min = Math.ceil(min);
         max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        return Math.floor(seeder() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
   
 
