@@ -101,38 +101,17 @@ def dashboard(username):
 def __tracking_bg_process():
     try:
         if request.method == 'POST':
-            values = request.get_json();
-            print(values)
-            tracking_value = values['trackingValue']
+            print('Incoming . . .')
+            print('RequestJSON: ', request.get_json(force=True))
+            req = request.get_json()
+            print(req)
+
 
     except Exception as e:
         return str(e)
 
     return render_template('dashboard.html')
 
-
-
-'''Trial Function to retrieve habit progress'''
-@app.route('/<username>/dashboard/interactive')
-def interactive(username):
-    try:
-        return render_template('interactive.html')
-    except Exception as e:
-        return (str(e))
-
-@app.route('/__background_process')
-def __background_process():
-    try: 
-        lang = request.args.get('proglang')
-        print("lang : ", lang)
-        if str(lang).lower() == 'python':
-            return jsonify(result='You are wise!')
-        else:
-            return jsonify(result='Try again')
-    except Exception as e:
-        return (str(e))
-
-    return render_template('interactive.html')
 
 
 '''New System Form'''

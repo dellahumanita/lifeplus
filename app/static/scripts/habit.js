@@ -220,7 +220,7 @@ export class Habit {
    }
 
 
-   //function taken from MDN and davidBau @
+   //function taken from MDN and Math.seedrandom() from davidBau @
    //   https://github.com/davidbau/seedrandom
    //generates a random integer between min and max
     __getRandomInt(min, max) {
@@ -233,15 +233,27 @@ export class Habit {
 
   //TODO
   getTrackingValue(button) {
-    //   var resultId = this.__generateId("result");
-    //   this.result.setAttribute("id", resultId);
+    var self = this;
       $(button).click(  function() {
-          $.getJSON('/__tracking_bg_process',
-                {
-                    trackingValue: this.trackingValue,
-                });
-      });
-      console.log("Ran getTrackingValue()");
+            // POST
+            fetch('/__tracking_bg_process', {
+                // Specify the method
+                method: 'POST',
+                // A JSON payload
+                body: JSON.stringify({
+                    "trackingValue": self.trackingValue
+                })
+            }).then(function (text) {
+            
+                console.log('POST response: ');
+            
+                // Should be 'OK' if everything was successful
+                console.log(text);
+            });
+            console.log("trackingValue : " + self.trackingValue);
+            console.log("Ran getTrackingValue()");
+      
+        });
   }
 
 }
