@@ -1,7 +1,7 @@
 #TODO
 
-[]  BACKEND
-    +   keep track of value on progress bar to database 
+[x]  BACKEND
+    -   keep track of value on progress bar to database 
         -   create a query to extract progress value
         -   pass the value to the html
         -   create js functions: 
@@ -16,13 +16,13 @@
                         increment by 1 results in ' (1/5*100) ' + '%' 
                         // i.e. 20% of progress
                         therefore n = (1/goalValue * 100)
-        +   update progress value into db 
-            +   extract html progressvalue and bring 
+        -   update progress value into db 
+            -   extract html progressvalue and bring 
 
 
 
 []  FRONTEND
-    +  dashboard 
+    -  dashboard 
         -   create elements on the page
             -   progress bar
             -   increment/decrement buttons 
@@ -33,5 +33,21 @@
                 //   note that the progressbar, button and query will all
                         share the same id 
         -   increment/decrement value on progress bar 
-        +   overflow on mini system
-            +   scrollable mini window or clickable slide
+        -   overflow on mini system
+            -   scrollable mini window or clickable slide
+    +   Mobile Responsive Design (***)
+        +   index  
+        +   dashboard 
+        +   sign in/registration 
+    +   Settings page   (*)
+        +   change username/email/password 
+        +   edit systems
+            +   remove systems/habits 
+            +   add systems/habits
+    +   Send email (**)
+        +   registration confirmation
+        +   any account changes 
+            +   username/email 
+            +   password 
+         
+
