@@ -1,6 +1,7 @@
 export class Habit {
     constructor (id, habitDiv) {
         // initialize fields 
+        this.hid = id;
         this.id = id; //IMPORTANT: returns an id for the current HTML element 
         this.habitDiv = habitDiv;
 
@@ -234,6 +235,7 @@ export class Habit {
   //TODO
   getTrackingValue(button) {
     var self = this;
+
       $(button).click(  function() {
             // POST
             fetch('/__tracking_bg_process', {
@@ -241,7 +243,8 @@ export class Habit {
                 method: 'POST',
                 // A JSON payload
                 body: JSON.stringify({
-                    "trackingValue": self.trackingValue
+                    "trackingValue": self.trackingValue,
+                    "habitId": self.hid
                 })
             }).then(function (text) {
             
@@ -251,6 +254,7 @@ export class Habit {
                 console.log(text);
             });
             console.log("trackingValue : " + self.trackingValue);
+            console.log("hid : " + self.hid)
             console.log("Ran getTrackingValue()");
       
         });

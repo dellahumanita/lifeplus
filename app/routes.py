@@ -96,15 +96,24 @@ def dashboard(username):
     return render_template('dashboard.html', title='Dashboard', systems=systems, data=data)
 
 
-#FIXME: helping function to extract progress value after user updates
 @app.route('/__tracking_bg_process', methods=['POST'])
 def __tracking_bg_process():
     try:
         if request.method == 'POST':
+            # get trackingValue and habit id
             print('Incoming . . .')
-            print('RequestJSON: ', request.get_json(force=True))
-            req = request.get_json()
-            print(req)
+            req = request.get_json(force=True)
+            tracking_value = req.get('trackingValue')
+            hid = req.get('habitId')
+
+            # find query in db 
+
+
+            # update column in db 
+
+
+
+
 
 
     except Exception as e:
