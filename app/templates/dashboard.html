@@ -28,66 +28,57 @@ Dashboard
     <div class="row">
         {% for key in data %}
         <div class="col-sm-5">
-                <div class="system-title">
-                </div>
-                <div class="system-mini">
-                        <h2>{{ key.title }}</h2>
-                        <div class="habits">
-                            <!-- if there are any habits do -->
-                            {% if data[key]|length > 0 %}
-                                {% for habit in data[key] %}
-                                
-                                <ul>
-                                    <li>
-                                        <div id="{{ habit.hid }}">
-                                            <!-- Habit Id -->
-                                            <div hidden class="habitId">{{ habit.hid }}</div>
-                                            <!-- Title -->
-                                            <div class="habitTitle">
-                                                {{ habit.title }}   
-                                            </div><br>
-                                            <!-- Progress Bar -->
-                                            <div class="progressBar">
-                                                <div class="progressValue">
-                                                    <div class="trackingValue">{{ habit.progress }}</div>
-                                                    <span hidden class="goalValue">{{ habit.goal }}</span>
-                                                </div>
-                                                <div class="progressFill"></div>
+            <div class="system-mini">
+                    <h2>{{ key.title }}</h2>
+                    <div class="habits">
+                        <!-- if there are any habits do -->
+                        {% if data[key]|length > 0 %}
+                            {% for habit in data[key] %}
+                            
+                            <ul>
+                                <li>
+                                    <div id="{{ habit.hid }}">
+                                        <!-- Habit Id -->
+                                        <div hidden class="habitId">{{ habit.hid }}</div>
+                                        <!-- Title -->
+                                        <div class="habitTitle">
+                                            {{ habit.title }}   
+                                        </div><br>
+                                        <!-- Progress Bar -->
+                                        <div class="progressBar">
+                                            <div class="progressValue">
+                                                <div class="trackingValue">{{ habit.progress }}</div>
+                                                <span hidden class="goalValue">{{ habit.goal }}</span>
                                             </div>
-                                            <p class="message"></p>
-                                            <p class="result"></p>
-        
-                                            <!-- Buttons -->
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="decrementButton"></div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="incrementButton"></div>
-                                                    </div>
+                                            <div class="progressFill"></div>
+                                        </div>
+                                        <p class="message"></p>
+                                        <p class="result"></p>
+
+                                        <!-- Buttons -->
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="decrementButton"></div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="incrementButton"></div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                </ul>
-                                {% endfor %}
-                            <!-- </div> -->
-
-        
+                                    </div>
+                                </li>
+                            </ul>
+                            {% endfor %}
                         {% else %}        
                             <p style="text-align:justify;">
                                 You have not added any habits.<br>
                                 Click <a href="{{ url_for('create_habit', username=current_user.username) }}">here</a>
                                 to add one!          
                             </p>
-                        {% endif %}
-
-                    </div>
-        
+                    {% endif %}
                 </div>
-
-
+            </div>
         </div>
         {% endfor %}
     </div> 

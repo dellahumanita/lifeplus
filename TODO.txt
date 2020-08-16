@@ -17,8 +17,7 @@
                         // i.e. 20% of progress
                         therefore n = (1/goalValue * 100)
         -   update progress value into db 
-            -   extract html progressvalue and bring 
-
+            -   extract html progressvalue
 
 
 []  FRONTEND
@@ -49,5 +48,7 @@
         +   any account changes 
             +   username/email 
             +   password 
+
+[]  DEPLOYMENT  
          
 
