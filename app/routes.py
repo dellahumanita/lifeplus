@@ -104,23 +104,30 @@ def __tracking_bg_process():
             print('Incoming . . .')
             req = request.get_json(force=True)
             tracking_value = req.get('trackingValue')
-            hid = req.get('habitId')
+            hid_value = req.get('habitId')
 
-            # find query in db 
-
-
-            # update column in db 
-
-
-
-
-
+            # find query in db and update
+            if __update_tracker(hid_value, tracking_value):
+                print("added to db")
+      
 
     except Exception as e:
         return str(e)
 
     return render_template('dashboard.html')
 
+
+def __update_tracker(hid, tracking_value):
+
+    try:
+        user = Habit.query.get(hid)
+        user.progress = tracking_value
+        db.session.commit()
+        
+    except Exception as e:
+        return str(e)
+
+    return True
 
 
 '''New System Form'''
@@ -146,11 +153,8 @@ def create_system(username):
 @login_required
 def create_habit(username):
 
-    available_systems = System.query.filter_by(user_id=current_user.id)
-    systems_list = [ (s.sid, s.title) for s in available_systems]
-
     form = HabitCreation()
-    form.systemID.choices = systems_list
+    form.systemID.choices = search_for_systems() #   search for available systems
 
     if form.validate_on_submit():
         habit = Habit(title=form.title.data, goal=form.goal.data, system_id=form.systemID.data)
@@ -163,21 +167,15 @@ def create_habit(username):
     return render_template('create_habit.html', title='New Habit', form=form)
 
 
-# @app.route('/<username>/view_system', methods=['GET', 'POST'])
-# @login_required
-# def view_system(username):
-#     # Full-view of existing system
+'''Search for available systems '''
+def search_for_systems():
 
-#     # get systemid from overview
-#     # query systemid
-
-#     return render_template('view_system.html', title='View')
+    available_systems = System.query.filter_by(user_id=current_user.id)
+    systems_list = [ (s.sid, s.title) for s in available_systems]
 
 
+    return systems_list
 
-# @app.route('/<username>/update_habit', methods=['GET', 'POST'])
-# def update_habit(username):
 
-#     return 
 
 

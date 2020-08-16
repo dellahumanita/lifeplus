@@ -231,33 +231,21 @@ export class Habit {
         return Math.floor(seeder() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
   
-
-  //TODO
   getTrackingValue(button) {
     var self = this;
 
-      $(button).click(  function() {
-            // POST
-            fetch('/__tracking_bg_process', {
-                // Specify the method
-                method: 'POST',
-                // A JSON payload
-                body: JSON.stringify({
-                    "trackingValue": self.trackingValue,
-                    "habitId": self.hid
-                })
-            }).then(function (text) {
-            
-                console.log('POST response: ');
-            
-                // Should be 'OK' if everything was successful
-                console.log(text);
-            });
-            console.log("trackingValue : " + self.trackingValue);
-            console.log("hid : " + self.hid)
-            console.log("Ran getTrackingValue()");
-      
-        });
+    $(button).click(  function() {
+        // POST
+        fetch('/__tracking_bg_process', {
+            // Specify the method
+            method: 'POST',
+            // A JSON payload
+            body: JSON.stringify({
+                "trackingValue": self.trackingValue,
+                "habitId": self.hid
+            })
+        })   
+    });
   }
 
 }
