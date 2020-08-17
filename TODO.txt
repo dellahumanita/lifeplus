@@ -38,7 +38,7 @@
         +   index  
         +   dashboard 
         +   sign in/registration 
-    +   Settings page   (*)
+    +   Settings page   (**)
         +   change username/email/password 
         +   edit systems
             +   remove systems/habits 

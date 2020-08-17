@@ -49,13 +49,11 @@ class SystemCreation(FlaskForm):
 
 
     
-
 '''Create a new habit'''
 class HabitCreation(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     systemID = SelectField('Select System', coerce=int, validators=[InputRequired()])
     goal = IntegerField('Frequency Goal', validators=[DataRequired()])
     submit = SubmitField('Save')
-
 
 

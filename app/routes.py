@@ -177,5 +177,16 @@ def search_for_systems():
     return systems_list
 
 
+@app.route('/settings')
+@login_required
+def settings():
+
+    # search for user's email to display
+    email = User.query.filter_by(id=current_user.id).first().email
+    print(email)
+
+    return render_template('settings.html', title='Title', email=email)
+
+
 
 

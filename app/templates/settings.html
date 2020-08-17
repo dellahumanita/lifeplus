@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block header %}Settings{% endblock %}
+
+{% block navVertical %}
+<nav>
+    <ul>
+        <li><a href="#">Account</a></li>
+        <li><a href="#">General</a></li>
+        <br><br>
+        <li><a href="{{ url_for('dashboard', username=current_user.username) }}">Back</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+<table style="width:100%">
+    <tr>
+        <td>Username</td>
+        <td>{{ current_user.username }}</td>
+        <td>
+            <div class="change">
+                <a href="#">Change</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{ email }}</td> 
+        <td>
+            <div class="change">
+                <a href="#">Change</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>Password</td>
+        <td>
+            <div class="change">
+                <a href="#">Change Password</a>
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+
+{% endblock %}
