@@ -1,1 +1,1 @@
-web:gunicorn wsgi:app
+web: flask db upgrade; gunicorn task_list:'create_app()'
